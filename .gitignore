@@ -2,3 +2,7 @@
 /docker/mysql/data/
 
 /CLAUDE.md
+
+/claude/*
+
+/mcp.json
