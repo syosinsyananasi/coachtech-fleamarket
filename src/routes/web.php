@@ -1,18 +1,43 @@
 <?php
 
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MypageController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SellController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// 商品一覧（トップ画面）
+Route::get('/', [ItemController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
+// 商品詳細
+Route::get('/item/{item_id}', [ItemController::class, 'show']);
+
+// 認証必須のルート
+Route::middleware('auth')->group(function () {
+    // 商品出品
+    Route::get('/sell', [SellController::class, 'create']);
+    Route::post('/sell', [SellController::class, 'store']);
+
+    // いいね
+    Route::post('/item/{item_id}/favorite', [FavoriteController::class, 'store']);
+    Route::delete('/item/{item_id}/favorite', [FavoriteController::class, 'destroy']);
+
+    // コメント
+    Route::post('/item/{item_id}/comment', [CommentController::class, 'store']);
+
+    // 購入
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'create'])->name('purchase.create');
+    Route::post('/purchase/{item_id}', [PurchaseController::class, 'store']);
+
+    // 住所変更
+    Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit']);
+    Route::post('/purchase/address/{item_id}', [AddressController::class, 'update']);
+
+    // マイページ
+    Route::get('/mypage', [MypageController::class, 'index']);
+    Route::get('/mypage/profile', [MypageController::class, 'edit']);
+    Route::post('/mypage/profile', [MypageController::class, 'update']);
 });
