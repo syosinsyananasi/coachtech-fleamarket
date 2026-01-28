@@ -4,13 +4,13 @@
 
 @section('content')
 <div class="items-tabs">
-    <a href="{{ route('items.index') }}" class="items-tabs__tab {{ !request('tab') || request('tab') === 'recommend' ? 'items-tabs__tab--active' : '' }}">おすすめ</a>
-    <a href="{{ route('items.index', ['tab' => 'mylist']) }}" class="items-tabs__tab {{ request('tab') === 'mylist' ? 'items-tabs__tab--active' : '' }}">マイリスト</a>
+    <a href="{{ route('item.index') }}" class="items-tabs__tab {{ !request('tab') || request('tab') === 'recommend' ? 'items-tabs__tab--active' : '' }}">おすすめ</a>
+    <a href="{{ route('item.index', ['tab' => 'mylist']) }}" class="items-tabs__tab {{ request('tab') === 'mylist' ? 'items-tabs__tab--active' : '' }}">マイリスト</a>
 </div>
 
 <div class="items-grid">
     @forelse($items as $item)
-        <a href="{{ route('items.show', $item) }}" class="product-card">
+        <a href="{{ route('item.show', $item) }}" class="product-card">
             <div class="product-card__image">
                 @if($item->image)
                     <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">

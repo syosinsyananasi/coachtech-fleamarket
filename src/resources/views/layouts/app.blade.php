@@ -16,7 +16,7 @@
         </a>
 
         <div class="main-header__search">
-            <form action="{{ route('items.index') }}" method="GET">
+            <form action="{{ route('item.index') }}" method="GET">
                 <input type="text" name="keyword" class="main-header__search-input" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
             </form>
         </div>
@@ -27,12 +27,12 @@
                     @csrf
                     <button type="submit" class="main-header__nav-link" style="background: none; border: none; cursor: pointer;">ログアウト</button>
                 </form>
-                <a href="{{ route('mypage') }}" class="main-header__nav-link">マイページ</a>
+                <a href="{{ route('mypage.index') }}" class="main-header__nav-link">マイページ</a>
             @else
                 <a href="{{ route('login') }}" class="main-header__nav-link">ログイン</a>
-                <a href="{{ route('mypage') }}" class="main-header__nav-link">マイページ</a>
+                <a href="{{ route('mypage.index') }}" class="main-header__nav-link">マイページ</a>
             @endauth
-            <a href="{{ route('items.create') }}" class="main-header__nav-button">出品</a>
+            <a href="{{ route('sell.create') }}" class="main-header__nav-button">出品</a>
         </nav>
     </header>
 

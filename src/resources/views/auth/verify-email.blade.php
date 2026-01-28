@@ -10,7 +10,7 @@
             メール認証を完了してください。
         </p>
 
-        <a href="{{ route('verification.verify.redirect') }}" class="verify-email__button">
+        <a href="http://localhost:8025" class="verify-email__button" target="_blank">
             認証はこちらから
         </a>
 
