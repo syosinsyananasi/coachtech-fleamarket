@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <form id="purchase-form" action="{{ route('purchase.store', $item->id) }}" method="POST">
+        <form id="purchase-form" action="{{ route('purchase.store', $item->id) }}" method="POST" novalidate>
             @csrf
             <input type="hidden" name="postal_code" value="{{ $shippingAddress['postal_code'] ?? '' }}">
             <input type="hidden" name="address" value="{{ $shippingAddress['address'] ?? '' }}">

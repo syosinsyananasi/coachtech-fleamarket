@@ -6,7 +6,7 @@
 <div class="profile-container">
     <h1 class="profile-form__title">プロフィール設定</h1>
 
-    <form class="profile-form" action="{{ route('mypage.update') }}" method="POST" enctype="multipart/form-data">
+    <form class="profile-form" action="{{ route('mypage.update') }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
 
         <div class="profile-form__avatar">
