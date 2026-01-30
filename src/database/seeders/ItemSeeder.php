@@ -6,6 +6,7 @@ use App\Models\Condition;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class ItemSeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class ItemSeeder extends Seeder
         $user = User::first();
 
         $conditions = Condition::pluck('id', 'name');
+
+        Storage::disk('public')->makeDirectory('items');
 
         $items = [
             [
@@ -99,6 +102,10 @@ class ItemSeeder extends Seeder
         ];
 
         foreach ($items as $itemData) {
+            $imageContents = file_get_contents($itemData['image']);
+            $imageName = 'items/' . uniqid() . '.jpg';
+            Storage::disk('public')->put($imageName, $imageContents);
+
             Item::create([
                 'user_id' => $user->id,
                 'condition_id' => $conditions[$itemData['condition']],
@@ -106,7 +113,7 @@ class ItemSeeder extends Seeder
                 'brand' => $itemData['brand'],
                 'description' => $itemData['description'],
                 'price' => $itemData['price'],
-                'image' => $itemData['image'],
+                'image' => $imageName,
                 'is_sold' => false,
             ]);
         }

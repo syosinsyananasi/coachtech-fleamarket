@@ -20,39 +20,35 @@
         </p>
 
         <div class="item-detail__actions">
-            @auth
-                <form action="{{ $item->isFavoritedBy(auth()->user()) ? route('favorite.destroy', $item->id) : route('favorite.store', $item->id) }}" method="POST" class="item-detail__favorite-form">
-                    @csrf
-                    @if($item->isFavoritedBy(auth()->user()))
-                        @method('DELETE')
-                        <button type="submit" class="item-detail__favorite item-detail__favorite--active">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="#ff5555" stroke="#ff5555" stroke-width="1">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                        </button>
-                    @else
-                        <button type="submit" class="item-detail__favorite">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                        </button>
-                    @endif
-                </form>
-            @else
-                <span class="item-detail__favorite">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
-                </span>
-            @endauth
-            <span class="item-detail__count">{{ $item->favorites->count() }}</span>
+            <div class="item-detail__action-item">
+                @auth
+                    <form action="{{ $item->isFavoritedBy(auth()->user()) ? route('favorite.destroy', $item->id) : route('favorite.store', $item->id) }}" method="POST" class="item-detail__favorite-form">
+                        @csrf
+                        @if($item->isFavoritedBy(auth()->user()))
+                            @method('DELETE')
+                            <button type="submit" class="item-detail__favorite item-detail__favorite--active">
+                                <img src="{{ asset('images/heart-active.png') }}" alt="お気に入り" width="40" height="40">
+                            </button>
+                        @else
+                            <button type="submit" class="item-detail__favorite">
+                                <img src="{{ asset('images/heart-default.png') }}" alt="お気に入り" width="40" height="40">
+                            </button>
+                        @endif
+                    </form>
+                @else
+                    <span class="item-detail__favorite">
+                        <img src="{{ asset('images/heart-default.png') }}" alt="お気に入り" width="40" height="40">
+                    </span>
+                @endauth
+                <span class="item-detail__count">{{ $item->favorites->count() }}</span>
+            </div>
 
-            <span class="item-detail__comment-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                </svg>
-            </span>
-            <span class="item-detail__count">{{ $item->comments->count() }}</span>
+            <div class="item-detail__action-item">
+                <span class="item-detail__comment-icon">
+                    <img src="{{ asset('images/comment-icon.png') }}" alt="コメント" width="40" height="40">
+                </span>
+                <span class="item-detail__count">{{ $item->comments->count() }}</span>
+            </div>
         </div>
 
         @if(!$item->is_sold)

@@ -53,4 +53,13 @@ class Item extends Model
     {
         return $this->hasOne(Purchase::class);
     }
+
+    public function isFavoritedBy($user)
+    {
+        if (!$user) {
+            return false;
+        }
+
+        return $this->favorites()->where('user_id', $user->id)->exists();
+    }
 }
