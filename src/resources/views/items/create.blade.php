@@ -10,23 +10,21 @@
         @csrf
 
         <div class="sell-form__section">
-            <h2 class="sell-form__section-title">商品画像</h2>
-            <div class="sell-form__image-upload">
-                <label class="sell-form__image-label">
+            <h2 class="sell-form__section-title sell-form__section-title--primary">商品画像</h2>
+            <label class="sell-form__image-upload" id="image-upload-area">
+                <div class="sell-form__image-preview" id="image-preview">
                     <span class="sell-form__image-button">画像を選択する</span>
-                    <input type="file" name="image" class="sell-form__image-input" accept="image/jpeg,image/png">
-                </label>
-                <div class="sell-form__image-preview" id="image-preview"></div>
-            </div>
+                </div>
+                <input type="file" name="image" class="sell-form__image-input" accept="image/jpeg,image/png">
+            </label>
             @error('image')
                 <p class="sell-form__error">{{ $message }}</p>
             @enderror
         </div>
 
-        <div class="sell-form__divider"></div>
-
         <div class="sell-form__section">
             <h2 class="sell-form__section-title">商品の詳細</h2>
+            <div class="sell-form__section-border"></div>
 
             <div class="sell-form__group">
                 <label class="sell-form__label">カテゴリー</label>
@@ -57,10 +55,9 @@
             </div>
         </div>
 
-        <div class="sell-form__divider"></div>
-
         <div class="sell-form__section">
             <h2 class="sell-form__section-title">商品名と説明</h2>
+            <div class="sell-form__section-border"></div>
 
             <div class="sell-form__group">
                 <label class="sell-form__label" for="name">商品名</label>
@@ -107,13 +104,10 @@
 <script>
     document.querySelector('.sell-form__image-input').addEventListener('change', function(e) {
         var preview = document.getElementById('image-preview');
-        preview.innerHTML = '';
         if (e.target.files && e.target.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                var img = document.createElement('img');
-                img.src = e.target.result;
-                preview.appendChild(img);
+                preview.innerHTML = '<img src="' + e.target.result + '">';
             }
             reader.readAsDataURL(e.target.files[0]);
         }
