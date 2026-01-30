@@ -9,6 +9,10 @@ class Item extends Model
 {
     use HasFactory;
 
+    const STATUS_AVAILABLE = 'available';
+    const STATUS_PENDING = 'pending';
+    const STATUS_SOLD = 'sold';
+
     protected $fillable = [
         'user_id',
         'condition_id',
@@ -17,11 +21,7 @@ class Item extends Model
         'description',
         'price',
         'image',
-        'is_sold',
-    ];
-
-    protected $casts = [
-        'is_sold' => 'boolean',
+        'status',
     ];
 
     public function user()

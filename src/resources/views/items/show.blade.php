@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        @if(!$item->is_sold)
+        @if($item->status === 'available')
             <a href="{{ route('purchase.create', $item->id) }}" class="item-detail__purchase-button">購入手続きへ</a>
         @else
             <span class="item-detail__sold-button">売り切れ</span>

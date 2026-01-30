@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->string('description');
             $table->unsignedInteger('price');
             $table->string('image');
-            $table->boolean('is_sold')->default(false);
+            $table->enum('status', ['available', 'pending', 'sold'])->default('available');
             $table->timestamps();
         });
     }

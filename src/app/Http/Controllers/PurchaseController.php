@@ -23,6 +23,13 @@ class PurchaseController extends Controller
     {
         $item = Item::findOrFail($item_id);
 
+        if ($item->status !== Item::STATUS_AVAILABLE) {
+            return redirect()->route('item.show', $item_id)
+                ->with('error', 'この商品は現在購入できません。');
+        }
+
+        $item->update(['status' => Item::STATUS_PENDING]);
+
         session([
             'purchase_data' => [
                 'item_id' => $item_id,
@@ -91,7 +98,7 @@ class PurchaseController extends Controller
             'building' => $data['building'],
         ]);
 
-        $item->update(['is_sold' => true]);
+        $item->update(['status' => Item::STATUS_SOLD]);
 
         session()->forget('purchase_data');
 

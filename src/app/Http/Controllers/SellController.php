@@ -29,7 +29,6 @@ class SellController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'image' => $imagePath,
-            'is_sold' => false,
         ]);
 
         $item->categories()->attach($request->categories);

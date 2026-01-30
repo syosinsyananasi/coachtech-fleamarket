@@ -114,7 +114,6 @@ class ItemSeeder extends Seeder
                 'description' => $itemData['description'],
                 'price' => $itemData['price'],
                 'image' => $imageName,
-                'is_sold' => false,
             ]);
         }
     }

@@ -30,7 +30,7 @@
                     @else
                         商品画像
                     @endif
-                    @if($item->is_sold)
+                    @if($item->status !== 'available')
                         <span class="product-card__sold">Sold</span>
                     @endif
                 </div>
