@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PurchaseRequest;
 use App\Models\Item;
 use App\Models\Purchase;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
 class PurchaseController extends Controller
 {
@@ -21,16 +23,77 @@ class PurchaseController extends Controller
     {
         $item = Item::findOrFail($item_id);
 
+        session([
+            'purchase_data' => [
+                'item_id' => $item_id,
+                'payment_method' => $request->payment_method,
+                'postal_code' => $request->postal_code,
+                'address' => $request->address,
+                'building' => $request->building,
+            ]
+        ]);
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $paymentMethodTypes = $request->payment_method === 'カード支払い' ? ['card'] : ['konbini'];
+
+        $sessionParams = [
+            'payment_method_types' => $paymentMethodTypes,
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'product_data' => [
+                        'name' => $item->name,
+                    ],
+                    'unit_amount' => $item->price,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('purchase.success'),
+            'cancel_url' => route('purchase.create', $item_id),
+        ];
+
+        if ($request->payment_method === 'コンビニ支払い') {
+            $sessionParams['payment_method_options'] = [
+                'konbini' => [
+                    'expires_after_days' => 3,
+                ],
+            ];
+        }
+
+        $session = Session::create($sessionParams);
+
+        return redirect($session->url);
+    }
+
+    public function success()
+    {
+        return $this->completePurchase();
+    }
+
+    private function completePurchase()
+    {
+        $data = session('purchase_data');
+
+        if (!$data) {
+            return redirect('/');
+        }
+
+        $item = Item::findOrFail($data['item_id']);
+
         Purchase::create([
             'user_id' => auth()->id(),
-            'item_id' => $item_id,
-            'payment_method' => $request->payment_method,
-            'postal_code' => $request->postal_code,
-            'address' => $request->address,
-            'building' => $request->building,
+            'item_id' => $data['item_id'],
+            'payment_method' => $data['payment_method'],
+            'postal_code' => $data['postal_code'],
+            'address' => $data['address'],
+            'building' => $data['building'],
         ]);
 
         $item->update(['is_sold' => true]);
+
+        session()->forget('purchase_data');
 
         return redirect('/');
     }
