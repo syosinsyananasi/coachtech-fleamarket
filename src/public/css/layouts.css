@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Layouts - ヘッダー
+   ========================================================================== */
+
+/* Auth Header (Login, Register, Verify Email pages) */
+.auth-header {
+    background-color: #000000;
+    height: 82px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.auth-header__logo {
+    height: 36px;
+    width: auto;
+}
+
+/* Main Header (Logged-in pages) */
+.main-header {
+    background-color: #000000;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.main-header__logo {
+    height: 36px;
+    width: auto;
+}
+
+.main-header__search {
+    flex: 1;
+    max-width: 563px;
+    margin-left: 75px;
+}
+
+.main-header__search-input {
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 0;
+    font-size: 24px;
+    background-color: #ffffff;
+}
+
+.main-header__search-input::placeholder {
+    color: #000000;
+    text-align: center;
+}
+
+.main-header__nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 30px;
+}
+
+.main-header__nav-link {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.main-header__nav-button {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 24px;
+    padding: 10px 26px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
