@@ -15,7 +15,7 @@ class PurchaseRequest extends FormRequest
     {
         return [
             'payment_method' => ['required', 'in:コンビニ支払い,カード支払い'],
-            'postal_code' => ['required', 'max:8'],
+            'postal_code' => ['required', 'regex:/^\d{3}-\d{4}$/'],
             'address' => ['required'],
         ];
     }

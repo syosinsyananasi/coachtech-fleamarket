@@ -8,17 +8,16 @@
 
     <form class="profile-form" action="{{ route('mypage.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
 
         <div class="profile-form__avatar">
             <div class="profile-form__avatar-image">
-                @if(isset($profile) && $profile->image)
-                    <img src="{{ asset('storage/' . $profile->image) }}" alt="プロフィール画像">
+                @if(isset($profile) && $profile->profile_image)
+                    <img src="{{ asset('storage/' . $profile->profile_image) }}" alt="プロフィール画像">
                 @endif
             </div>
             <label class="profile-form__avatar-button">
                 画像を選択する
-                <input type="file" name="image" class="profile-form__avatar-input" accept="image/*">
+                <input type="file" name="profile_image" class="profile-form__avatar-input" accept="image/*">
             </label>
         </div>
 
@@ -31,9 +30,9 @@
         </div>
 
         <div class="profile-form__group">
-            <label class="profile-form__label" for="postcode">郵便番号</label>
-            <input type="text" name="postcode" id="postcode" class="profile-form__input" value="{{ old('postcode', $profile->postcode ?? '') }}">
-            @error('postcode')
+            <label class="profile-form__label" for="postal_code">郵便番号</label>
+            <input type="text" name="postal_code" id="postal_code" class="profile-form__input" value="{{ old('postal_code', $profile->postal_code ?? '') }}">
+            @error('postal_code')
                 <p class="profile-form__error">{{ $message }}</p>
             @enderror
         </div>

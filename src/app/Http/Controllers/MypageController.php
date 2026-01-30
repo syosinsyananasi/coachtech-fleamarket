@@ -44,12 +44,10 @@ class MypageController extends Controller
             $profileData['profile_image'] = $request->file('profile_image')->store('profiles', 'public');
         }
 
-        if ($user->profile) {
-            $user->profile->update($profileData);
-        } else {
-            $profileData['user_id'] = $user->id;
-            Profile::create($profileData);
-        }
+        Profile::updateOrCreate(
+            ['user_id' => $user->id],
+            $profileData
+        );
 
         return redirect('/mypage');
     }
