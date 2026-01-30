@@ -883,12 +883,19 @@ img {
 .purchase__select {
     width: 100%;
     max-width: 400px;
-    height: 50px;
+    height: 45px;
     padding: 0 15px;
     border: 1px solid #5f5f5f;
     border-radius: 4px;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #5f5f5f;
     background-color: #ffffff;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235f5f5f' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    cursor: pointer;
 }
 
 .purchase__select:focus {
@@ -913,7 +920,6 @@ img {
 
 .purchase__summary {
     background-color: #f5f5f5;
-    padding: 30px;
     border-radius: 10px;
     margin-bottom: 30px;
 }
@@ -921,11 +927,13 @@ img {
 .purchase__summary-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    padding: 48px;
+    border: 1px solid #000;
+    border-bottom: none;
 }
 
 .purchase__summary-row:last-child {
-    margin-bottom: 0;
+    border-bottom: 1px solid #000;
 }
 
 .purchase__summary-label {

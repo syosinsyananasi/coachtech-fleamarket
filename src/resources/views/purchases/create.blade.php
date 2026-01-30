@@ -41,8 +41,8 @@
                 <a href="{{ route('address.edit', $item->id) }}" class="purchase__change-link">変更する</a>
             </div>
             <div class="purchase__address">
-                <p>〒 {{ $shippingAddress['postal_code'] ?? '' }}</p>
-                <p>{{ $shippingAddress['address'] ?? '' }}{{ $shippingAddress['building'] ?? '' }}</p>
+                <p>〒 {{ $profile->postal_code ?? '' }}</p>
+                <p>{{ $profile->address ?? '' }}{{ $profile->building ?? '' }}</p>
             </div>
             @error('postal_code')
                 <p class="purchase__error">{{ $message }}</p>
@@ -69,9 +69,9 @@
 
         <form id="purchase-form" action="{{ route('purchase.store', $item->id) }}" method="POST" novalidate>
             @csrf
-            <input type="hidden" name="postal_code" value="{{ $shippingAddress['postal_code'] ?? '' }}">
-            <input type="hidden" name="address" value="{{ $shippingAddress['address'] ?? '' }}">
-            <input type="hidden" name="building" value="{{ $shippingAddress['building'] ?? '' }}">
+            <input type="hidden" name="postal_code" value="{{ $profile->postal_code ?? '' }}">
+            <input type="hidden" name="address" value="{{ $profile->address ?? '' }}">
+            <input type="hidden" name="building" value="{{ $profile->building ?? '' }}">
             <button type="submit" class="purchase__button">購入する</button>
         </form>
     </div>

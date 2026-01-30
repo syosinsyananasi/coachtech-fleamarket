@@ -11,7 +11,7 @@
 
         <div class="address-form__group">
             <label class="address-form__label" for="postal_code">郵便番号</label>
-            <input type="text" name="postal_code" id="postal_code" class="address-form__input" value="{{ old('postal_code', $shippingAddress['postal_code'] ?? '') }}">
+            <input type="text" name="postal_code" id="postal_code" class="address-form__input" value="{{ old('postal_code', auth()->user()->profile->postal_code ?? '') }}">
             @error('postal_code')
                 <p class="address-form__error">{{ $message }}</p>
             @enderror
@@ -19,7 +19,7 @@
 
         <div class="address-form__group">
             <label class="address-form__label" for="address">住所</label>
-            <input type="text" name="address" id="address" class="address-form__input" value="{{ old('address', $shippingAddress['address'] ?? '') }}">
+            <input type="text" name="address" id="address" class="address-form__input" value="{{ old('address', auth()->user()->profile->address ?? '') }}">
             @error('address')
                 <p class="address-form__error">{{ $message }}</p>
             @enderror
@@ -27,7 +27,7 @@
 
         <div class="address-form__group">
             <label class="address-form__label" for="building">建物名</label>
-            <input type="text" name="building" id="building" class="address-form__input" value="{{ old('building', $shippingAddress['building'] ?? '') }}">
+            <input type="text" name="building" id="building" class="address-form__input" value="{{ old('building', auth()->user()->profile->building ?? '') }}">
             @error('building')
                 <p class="address-form__error">{{ $message }}</p>
             @enderror

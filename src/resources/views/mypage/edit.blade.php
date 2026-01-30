@@ -57,3 +57,18 @@
     </form>
 </div>
 @endsection
+
+@section('scripts')
+<script>
+    document.querySelector('.profile-form__avatar-input').addEventListener('change', function(e) {
+        var preview = document.querySelector('.profile-form__avatar-image');
+        if (e.target.files && e.target.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = '<img src="' + e.target.result + '" alt="プロフィール画像">';
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+</script>
+@endsection
