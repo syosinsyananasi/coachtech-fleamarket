@@ -49,6 +49,6 @@ class MypageController extends Controller
             $profileData
         );
 
-        return redirect('/mypage');
+        return redirect()->route('item.index');
     }
 }
