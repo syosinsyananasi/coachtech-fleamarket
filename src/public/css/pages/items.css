@@ -27,7 +27,7 @@
 .item-detail {
     display: flex;
     gap: 60px;
-    padding: 50px 70px;
+    padding: 95px 65px 50px 110px;
 }
 
 .item-detail__image {
@@ -38,6 +38,7 @@
     align-items: center;
     justify-content: center;
     font-size: 24px;
+    margin: 36px 45px 0;
 }
 
 .item-detail__image img {
@@ -52,6 +53,7 @@
 
 .item-detail__info {
     flex: 1;
+    padding: 0 55px 0 65px;
 }
 
 .item-detail__name {
@@ -121,8 +123,7 @@
 .item-detail__purchase-button {
     display: block;
     width: 100%;
-    max-width: 400px;
-    padding: 18px 0;
+    padding: 11px 0;
     background-color: #ff5555;
     color: #ffffff;
     font-size: 24px;
@@ -300,7 +301,7 @@
 .sell-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 60px;
+    padding: 60px 60px 152px;
 }
 
 .sell-form__title {
@@ -311,14 +312,14 @@
 }
 
 .sell-form__section {
-    margin-bottom: 30px;
+    margin-bottom: 70px;
 }
 
 .sell-form__section-title {
     font-size: 30px;
     font-weight: bold;
     color: #5f5f5f;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .sell-form__section-title--primary {
@@ -329,7 +330,7 @@
 .sell-form__section-border {
     height: 1px;
     background-color: #5f5f5f;
-    margin-bottom: 20px;
+    margin-bottom: 36px;
 }
 
 .sell-form__divider {
@@ -380,14 +381,22 @@
 }
 
 .sell-form__group {
-    margin-bottom: 30px;
+    margin-bottom: 65px;
+}
+
+.sell-form__group--spaced {
+    margin-bottom: 36px;
 }
 
 .sell-form__label {
     display: block;
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.sell-form__label--spaced {
+    margin-bottom: 7px;
 }
 
 .sell-form__input {
@@ -463,7 +472,7 @@
 .sell-form__categories {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 19px;
 }
 
 .sell-form__category {
@@ -476,11 +485,12 @@
 
 .sell-form__category-text {
     display: inline-block;
-    padding: 8px 20px;
+    padding: 5px 13px;
     background-color: #ffffff;
     border: 1px solid #ff5555;
     border-radius: 40px;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: 500;
     color: #ff5555;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
@@ -507,7 +517,7 @@
 
 .sell-form__button {
     width: 100%;
-    height: 65px;
+    height: 60px;
     background-color: #ff5555;
     color: #ffffff;
     font-size: 26px;
@@ -515,7 +525,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .sell-form__button:hover {

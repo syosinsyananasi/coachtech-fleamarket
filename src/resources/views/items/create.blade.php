@@ -59,32 +59,32 @@
             <h2 class="sell-form__section-title">商品名と説明</h2>
             <div class="sell-form__section-border"></div>
 
-            <div class="sell-form__group">
-                <label class="sell-form__label" for="name">商品名</label>
+            <div class="sell-form__group sell-form__group--spaced">
+                <label class="sell-form__label sell-form__label--spaced" for="name">商品名</label>
                 <input type="text" name="name" id="name" class="sell-form__input" value="{{ old('name') }}">
                 @error('name')
                     <p class="sell-form__error">{{ $message }}</p>
                 @enderror
             </div>
 
-            <div class="sell-form__group">
-                <label class="sell-form__label" for="brand">ブランド名</label>
+            <div class="sell-form__group sell-form__group--spaced">
+                <label class="sell-form__label sell-form__label--spaced" for="brand">ブランド名</label>
                 <input type="text" name="brand" id="brand" class="sell-form__input" value="{{ old('brand') }}">
                 @error('brand')
                     <p class="sell-form__error">{{ $message }}</p>
                 @enderror
             </div>
 
-            <div class="sell-form__group">
-                <label class="sell-form__label" for="description">商品の説明</label>
+            <div class="sell-form__group sell-form__group--spaced">
+                <label class="sell-form__label sell-form__label--spaced" for="description">商品の説明</label>
                 <textarea name="description" id="description" class="sell-form__textarea" rows="5">{{ old('description') }}</textarea>
                 @error('description')
                     <p class="sell-form__error">{{ $message }}</p>
                 @enderror
             </div>
 
-            <div class="sell-form__group">
-                <label class="sell-form__label" for="price">販売価格</label>
+            <div class="sell-form__group sell-form__group--spaced">
+                <label class="sell-form__label sell-form__label--spaced" for="price">販売価格</label>
                 <div class="sell-form__price-input">
                     <span class="sell-form__price-prefix">¥</span>
                     <input type="number" name="price" id="price" class="sell-form__input sell-form__input--price" value="{{ old('price') }}" min="0">
