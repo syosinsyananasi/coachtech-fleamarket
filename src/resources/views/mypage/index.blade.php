@@ -5,15 +5,15 @@
 @section('content')
 <div class="mypage">
     <div class="mypage__profile">
-        <div class="mypage__avatar">
-            @if($user->profile && $user->profile->profile_image)
-                <img src="{{ asset('storage/' . $user->profile->profile_image) }}" alt="{{ $user->name }}">
-            @endif
-        </div>
         <div class="mypage__user-info">
+            <div class="mypage__avatar">
+                @if($user->profile && $user->profile->profile_image)
+                    <img src="{{ asset('storage/' . $user->profile->profile_image) }}" alt="{{ $user->name }}">
+                @endif
+            </div>
             <h1 class="mypage__username">{{ $user->name }}</h1>
-            <a href="{{ route('mypage.edit') }}" class="mypage__edit-button">プロフィールを編集</a>
         </div>
+        <a href="{{ route('mypage.edit') }}" class="mypage__edit-button">プロフィールを編集</a>
     </div>
 
     <div class="mypage__tabs">

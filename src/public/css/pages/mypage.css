@@ -4,14 +4,15 @@
 
 /* Mypage Index */
 .mypage {
-    padding: 30px 70px;
+    padding: 78px 0 30px 0;
 }
 
 .mypage__profile {
     display: flex;
     align-items: center;
-    gap: 30px;
-    margin-bottom: 40px;
+    justify-content: space-between;
+    padding: 0 200px 0 300px;
+    margin-bottom: 78px;
 }
 
 .mypage__avatar {
@@ -31,25 +32,30 @@
 
 .mypage__user-info {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
 }
 
 .mypage__username {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: bold;
+    font-style: normal;
+    color: #000;
 }
 
 .mypage__edit-button {
-    display: inline-block;
-    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 310px;
+    height: 60px;
     border: 2px solid #ff5555;
     border-radius: 10px;
     background-color: transparent;
     color: #ff5555;
-    font-size: 16px;
+    font-size: 26px;
     font-weight: bold;
-    text-align: center;
 }
 
 .mypage__edit-button:hover {
@@ -60,8 +66,8 @@
 .mypage__tabs {
     border-bottom: 2px solid #000000;
     display: flex;
-    gap: 50px;
-    padding: 15px 60px;
+    gap: 55px;
+    padding: 15px 130px;
     margin-bottom: 30px;
 }
 
