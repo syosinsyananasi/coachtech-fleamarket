@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 200px 0 300px;
-    margin-bottom: 78px;
+    margin-bottom: 70px;
 }
 
 .mypage__avatar {
@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 30px;
+    gap: 57px;
 }
 
 .mypage__username {
@@ -64,11 +64,10 @@
 }
 
 .mypage__tabs {
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid rgba(95, 95, 95, 1);
     display: flex;
     gap: 55px;
-    padding: 15px 130px;
-    margin-bottom: 30px;
+    padding: 7px 130px;
 }
 
 .mypage__tab {

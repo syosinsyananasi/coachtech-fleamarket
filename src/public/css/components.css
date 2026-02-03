@@ -158,7 +158,6 @@
 /* Product Card */
 .product-card {
     position: relative;
-    width: 290px;
     border-radius: 4px;
     overflow: hidden;
     display: block;
@@ -166,8 +165,8 @@
 
 .product-card__image {
     position: relative;
-    width: 290px;
-    height: 290px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     border-radius: 4px;
     background-color: #d9d9d9;
     display: flex;
@@ -189,7 +188,6 @@
     font-family: Inter;
     font-size: 25px;
     font-weight: 400;
-    line-height: normal;
 }
 
 .product-card__sold {
@@ -205,7 +203,7 @@
 /* Items Grid */
 .items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     padding: 76px 70px;
 }
