@@ -4,15 +4,16 @@
 
 /* Items Index Page */
 .items-tabs {
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid rgba(95, 95, 95, 1);
     display: flex;
-    gap: 50px;
-    padding: 15px 130px;
+    gap: 70px;
+    padding: 47px 170px 0px;
 }
 
 .items-tabs__tab {
     font-size: 24px;
     font-weight: bold;
+    font-style: normal;
     color: #5f5f5f;
     padding-bottom: 5px;
     cursor: pointer;
