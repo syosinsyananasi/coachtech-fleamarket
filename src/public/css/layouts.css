@@ -4,7 +4,7 @@
 
 /* Auth Header (Login, Register, Verify Email pages) */
 .auth-header {
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 1);
     height: 82px;
     width: 100%;
     display: flex;
@@ -19,7 +19,7 @@
 
 /* Main Header (Logged-in pages) */
 .main-header {
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 1);
     height: 80px;
     width: 100%;
     display: flex;
@@ -45,12 +45,11 @@
     border: none;
     border-radius: 5px;
     font-size: 24px;
-    font-style: normal;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .main-header__search-input::placeholder {
-    color: #000000;
+    color: rgba(0, 0, 0, 1);
     text-align: left;
 }
 
@@ -63,16 +62,14 @@
 }
 
 .main-header__nav-link {
-    color: #ffffff;
+    color: rgba(255, 255, 255, 1);
     font-size: 24px;
-    font-style: normal;
 }
 
 .main-header__nav-button {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
     font-size: 24px;
-    font-style: normal;
     padding: 6.5px 26px;
     border-radius: 4px;
     border: none;
