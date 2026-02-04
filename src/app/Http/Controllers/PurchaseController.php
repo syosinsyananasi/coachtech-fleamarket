@@ -10,21 +10,18 @@ use Stripe\Checkout\Session;
 
 class PurchaseController extends Controller
 {
-    public function create($item_id)
+    public function create(Item $item)
     {
-        $item = Item::findOrFail($item_id);
         $user = auth()->user();
         $profile = $user->profile;
 
         return view('purchases.create', compact('item', 'profile'));
     }
 
-    public function store(PurchaseRequest $request, $item_id)
+    public function store(PurchaseRequest $request, Item $item)
     {
-        $item = Item::findOrFail($item_id);
-
         if ($item->status !== Item::STATUS_AVAILABLE) {
-            return redirect()->route('item.show', $item_id)
+            return redirect()->route('item.show', $item)
                 ->with('error', 'この商品は現在購入できません。');
         }
 
@@ -32,7 +29,7 @@ class PurchaseController extends Controller
 
         session([
             'purchase_data' => [
-                'item_id' => $item_id,
+                'item_id' => $item->id,
                 'payment_method' => $request->payment_method,
                 'postal_code' => $request->postal_code,
                 'address' => $request->address,
@@ -58,7 +55,7 @@ class PurchaseController extends Controller
             ]],
             'mode' => 'payment',
             'success_url' => route('purchase.success'),
-            'cancel_url' => route('purchase.create', $item_id),
+            'cancel_url' => route('purchase.create', $item),
         ];
 
         if ($request->payment_method === 'コンビニ支払い') {

@@ -6,15 +6,15 @@ use App\Models\Item;
 
 class FavoriteController extends Controller
 {
-    public function store($item_id)
+    public function store(Item $item)
     {
-        auth()->user()->favorites()->attach($item_id);
+        auth()->user()->favorites()->attach($item->id);
         return back();
     }
 
-    public function destroy($item_id)
+    public function destroy(Item $item)
     {
-        auth()->user()->favorites()->detach($item_id);
+        auth()->user()->favorites()->detach($item->id);
         return back();
     }
 }

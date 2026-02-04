@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ItemController::class, 'index'])->name('item.index');
 
 // 商品詳細
-Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
 
 // 認証必須のルート
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -22,20 +22,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/sell', [SellController::class, 'store'])->name('sell.store');
 
     // いいね
-    Route::post('/item/{item_id}/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
-    Route::delete('/item/{item_id}/favorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
+    Route::post('/item/{item}/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
+    Route::delete('/item/{item}/favorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
 
     // コメント
-    Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comment.store');
 
     // 購入
     Route::get('/purchase/success', [PurchaseController::class, 'success'])->name('purchase.success');
-    Route::get('/purchase/{item_id}', [PurchaseController::class, 'create'])->name('purchase.create');
-    Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
+    Route::get('/purchase/{item}', [PurchaseController::class, 'create'])->name('purchase.create');
+    Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
 
     // 住所変更
-    Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit'])->name('address.edit');
-    Route::post('/purchase/address/{item_id}', [AddressController::class, 'update'])->name('address.update');
+    Route::get('/purchase/address/{item}', [AddressController::class, 'edit'])->name('address.edit');
+    Route::post('/purchase/address/{item}', [AddressController::class, 'update'])->name('address.update');
 
     // マイページ
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');

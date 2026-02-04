@@ -38,7 +38,7 @@
         <div class="purchase__section">
             <div class="purchase__section-header">
                 <h2 class="purchase__section-title">配送先</h2>
-                <a href="{{ route('address.edit', $item->id) }}" class="purchase__change-link">変更する</a>
+                <a href="{{ route('address.edit', $item) }}" class="purchase__change-link">変更する</a>
             </div>
             <div class="purchase__address">
                 <p>〒 {{ $profile->postal_code ?? '' }}</p>
@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <form id="purchase-form" action="{{ route('purchase.store', $item->id) }}" method="POST" novalidate>
+        <form id="purchase-form" action="{{ route('purchase.store', $item) }}" method="POST" novalidate>
             @csrf
             <input type="hidden" name="postal_code" value="{{ $profile->postal_code ?? '' }}">
             <input type="hidden" name="address" value="{{ $profile->address ?? '' }}">

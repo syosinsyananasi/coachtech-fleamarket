@@ -35,9 +35,9 @@ class ItemController extends Controller
         return view('items.index', compact('items', 'tab', 'keyword'));
     }
 
-    public function show($item_id)
+    public function show(Item $item)
     {
-        $item = Item::with(['user', 'condition', 'categories', 'comments.user', 'favorites'])->findOrFail($item_id);
+        $item->load(['user', 'condition', 'categories', 'comments.user', 'favorites']);
         return view('items.show', compact('item'));
     }
 }

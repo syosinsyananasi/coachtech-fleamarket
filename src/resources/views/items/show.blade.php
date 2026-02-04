@@ -22,7 +22,7 @@
         <div class="item-detail__actions">
             <div class="item-detail__action-item">
                 @auth
-                    <form action="{{ $item->isFavoritedBy(auth()->user()) ? route('favorite.destroy', $item->id) : route('favorite.store', $item->id) }}" method="POST" class="item-detail__favorite-form">
+                    <form action="{{ $item->isFavoritedBy(auth()->user()) ? route('favorite.destroy', $item) : route('favorite.store', $item) }}" method="POST" class="item-detail__favorite-form">
                         @csrf
                         @if($item->isFavoritedBy(auth()->user()))
                             @method('DELETE')
@@ -52,7 +52,7 @@
         </div>
 
         @if($item->status === 'available')
-            <a href="{{ route('purchase.create', $item->id) }}" class="item-detail__purchase-button">購入手続きへ</a>
+            <a href="{{ route('purchase.create', $item) }}" class="item-detail__purchase-button">購入手続きへ</a>
         @else
             <span class="item-detail__sold-button">売り切れ</span>
         @endif
@@ -102,7 +102,7 @@
             @auth
                 <div class="item-detail__comment-form">
                     <h3 class="item-detail__comment-form-title">商品へのコメント</h3>
-                    <form action="{{ route('comment.store', $item->id) }}" method="POST" novalidate>
+                    <form action="{{ route('comment.store', $item) }}" method="POST" novalidate>
                         @csrf
                         <textarea name="content" class="item-detail__comment-input" rows="5">{{ old('content') }}</textarea>
                         @error('content')
