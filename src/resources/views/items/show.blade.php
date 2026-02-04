@@ -67,11 +67,11 @@
 
             <div class="item-detail__info-row">
                 <span class="item-detail__info-label">カテゴリー</span>
-                <div class="item-detail__categories">
+                <ul class="item-detail__categories">
                     @foreach($item->categories as $category)
-                        <span class="item-detail__category">{{ $category->name }}</span>
+                        <li class="item-detail__category">{{ $category->name }}</li>
                     @endforeach
-                </div>
+                </ul>
             </div>
 
             <div class="item-detail__info-row">
@@ -83,9 +83,9 @@
         <div class="item-detail__comments">
             <h2 class="item-detail__comments-title">コメント({{ $item->comments->count() }})</h2>
 
-            <div class="item-detail__comments-list">
+            <ul class="item-detail__comments-list">
                 @foreach($item->comments as $comment)
-                    <div class="item-detail__comment">
+                    <li class="item-detail__comment">
                         <div class="item-detail__comment-user">
                             <div class="item-detail__comment-avatar">
                                 @if($comment->user->profile && $comment->user->profile->profile_image)
@@ -95,9 +95,9 @@
                             <span class="item-detail__comment-name">{{ $comment->user->name }}</span>
                         </div>
                         <p class="item-detail__comment-text">{{ $comment->content }}</p>
-                    </div>
+                    </li>
                 @endforeach
-            </div>
+            </ul>
 
             @auth
                 <div class="item-detail__comment-form">

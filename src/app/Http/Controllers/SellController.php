@@ -6,7 +6,6 @@ use App\Http\Requests\ExhibitionRequest;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
-use Illuminate\Support\Facades\Storage;
 
 class SellController extends Controller
 {

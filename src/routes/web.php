@@ -29,7 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comment.store');
 
     // 購入
-    Route::get('/purchase/success', [PurchaseController::class, 'success'])->name('purchase.success');
+    Route::get('/purchase/success', [PurchaseController::class, 'handlePaymentSuccess'])->name('purchase.paymentSuccess');
     Route::get('/purchase/{item}', [PurchaseController::class, 'create'])->name('purchase.create');
     Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
 

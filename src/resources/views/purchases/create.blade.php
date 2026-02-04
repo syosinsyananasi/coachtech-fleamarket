@@ -22,8 +22,8 @@
         <div class="purchase__divider"></div>
 
         <div class="purchase__section">
-            <h2 class="purchase__section-title">支払い方法</h2>
-            <select name="payment_method" id="payment_method" class="purchase__select" form="purchase-form">
+            <h2 class="purchase__section-title" id="payment-method-label">支払い方法</h2>
+            <select name="payment_method" id="payment_method" class="purchase__select" form="purchase-form" aria-labelledby="payment-method-label">
                 <option value="">選択してください</option>
                 <option value="コンビニ支払い" {{ old('payment_method', session('payment_method')) === 'コンビニ支払い' ? 'selected' : '' }}>コンビニ支払い</option>
                 <option value="カード支払い" {{ old('payment_method', session('payment_method')) === 'カード支払い' ? 'selected' : '' }}>カード支払い</option>

@@ -54,10 +54,11 @@ class PurchaseController extends Controller
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => route('purchase.success'),
+            'success_url' => route('purchase.paymentSuccess'),
             'cancel_url' => route('purchase.create', $item),
         ];
 
+        // コンビニ支払いの有効期限（3日間）
         if ($request->payment_method === 'コンビニ支払い') {
             $sessionParams['payment_method_options'] = [
                 'konbini' => [
@@ -71,7 +72,7 @@ class PurchaseController extends Controller
         return redirect($session->url);
     }
 
-    public function success()
+    public function handlePaymentSuccess()
     {
         return $this->completePurchase();
     }
