@@ -78,21 +78,21 @@ class PurchaseController extends Controller
 
     private function completePurchase()
     {
-        $data = session('purchase_data');
+        $purchaseData = session('purchase_data');
 
-        if (!$data) {
+        if (!$purchaseData) {
             return redirect('/');
         }
 
-        $item = Item::findOrFail($data['item_id']);
+        $item = Item::findOrFail($purchaseData['item_id']);
 
         Purchase::create([
             'user_id' => auth()->id(),
-            'item_id' => $data['item_id'],
-            'payment_method' => $data['payment_method'],
-            'postal_code' => $data['postal_code'],
-            'address' => $data['address'],
-            'building' => $data['building'],
+            'item_id' => $purchaseData['item_id'],
+            'payment_method' => $purchaseData['payment_method'],
+            'postal_code' => $purchaseData['postal_code'],
+            'address' => $purchaseData['address'],
+            'building' => $purchaseData['building'],
         ]);
 
         $item->update(['status' => Item::STATUS_SOLD]);
