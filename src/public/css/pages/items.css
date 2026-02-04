@@ -57,7 +57,7 @@
 }
 
 .item-detail__name {
-    font-size: 36px;
+    font-size: 45px;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -69,19 +69,19 @@
 }
 
 .item-detail__price {
-    font-size: 36px;
-    font-weight: bold;
+    font-size: 45px;
+    font-weight: normal;
     margin-bottom: 20px;
 }
 
 .item-detail__price-yen {
+    font-size: 30px;
     margin-right: 5px;
 }
 
 .item-detail__price-tax {
-    font-size: 18px;
+    font-size: 30px;
     font-weight: normal;
-    color: #5f5f5f;
 }
 
 .item-detail__actions {
@@ -117,16 +117,18 @@
 
 .item-detail__count {
     font-size: 18px;
+    font-weight: 700;
     color: #5f5f5f;
 }
 
 .item-detail__purchase-button {
     display: block;
     width: 100%;
+    max-width: 500px;
     padding: 11px 0;
     background-color: #ff5555;
     color: #ffffff;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
     border-radius: 5px;
@@ -156,13 +158,14 @@
 }
 
 .item-detail__section-title {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
     margin-bottom: 15px;
 }
 
 .item-detail__description-text {
-    font-size: 18px;
+    font-size: 24px;
+    font-weight: normal;
 }
 
 .item-detail__info-section {
@@ -176,13 +179,14 @@
 }
 
 .item-detail__info-label {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     min-width: 100px;
 }
 
 .item-detail__info-value {
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: normal;
 }
 
 .item-detail__categories {
@@ -195,7 +199,8 @@
     padding: 5px 15px;
     background-color: #d9d9d9;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 20px;
+    font-weight: normal;
 }
 
 .item-detail__comments {
@@ -203,8 +208,9 @@
 }
 
 .item-detail__comments-title {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
+    color: #5f5f5f;
     margin-bottom: 25px;
 }
 
@@ -238,12 +244,13 @@
 }
 
 .item-detail__comment-name {
-    font-size: 18px;
+    font-size: 30px;
     font-weight: bold;
 }
 
 .item-detail__comment-text {
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 300;
     padding-left: 65px;
 }
 
@@ -252,7 +259,7 @@
 }
 
 .item-detail__comment-form-title {
-    font-size: 20px;
+    font-size: 28px;
     font-weight: bold;
     margin-bottom: 15px;
 }
@@ -285,7 +292,7 @@
     padding: 15px 0;
     background-color: #ff5555;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
     border: none;
     border-radius: 5px;
