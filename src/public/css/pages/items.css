@@ -12,7 +12,7 @@
 
 .items-tabs__tab {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     font-style: normal;
     color: #5f5f5f;
     padding-bottom: 5px;
@@ -61,7 +61,7 @@
 
 .item-detail__name {
     font-size: 45px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .item-detail__brand {
@@ -102,6 +102,7 @@
 
 .item-detail__favorite-form {
     display: inline-block;
+    margin-bottom: 5px;
 }
 
 .item-detail__favorite {
@@ -116,6 +117,7 @@
 .item-detail__comment-icon {
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 .item-detail__count {
@@ -131,7 +133,7 @@
     background-color: #ff5555;
     color: #ffffff;
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 700;
     text-align: center;
     border-radius: 5px;
     margin-bottom: 22px;
@@ -149,7 +151,7 @@
     background-color: #d9d9d9;
     color: #5f5f5f;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     text-align: center;
     border-radius: 5px;
     margin-bottom: 40px;
@@ -161,7 +163,7 @@
 
 .item-detail__section-title {
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 30px;
 }
 
@@ -182,7 +184,7 @@
 
 .item-detail__info-label {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     min-width: 125px;
 }
 
@@ -211,7 +213,7 @@
 
 .item-detail__comments-title {
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 700;
     color: #5f5f5f;
     margin-bottom: 25px;
 }
@@ -247,7 +249,7 @@
 
 .item-detail__comment-name {
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .item-detail__comment-text {
@@ -262,7 +264,8 @@
 
 .item-detail__comment-form-title {
     font-size: 28px;
-    font-weight: bold;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
 
 .item-detail__comment-input {
@@ -294,7 +297,7 @@
     background-color: #ff5555;
     color: #ffffff;
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 700;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -313,7 +316,7 @@
 
 .sell-form__title {
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 700;
     text-align: center;
     margin-bottom: 50px;
 }
@@ -324,7 +327,7 @@
 
 .sell-form__section-title {
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 700;
     color: #5f5f5f;
     margin-bottom: 12px;
 }
@@ -384,7 +387,7 @@
     background-color: transparent;
     color: #ff5555;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .sell-form__group {
@@ -398,7 +401,7 @@
 .sell-form__label {
     display: block;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 30px;
 }
 
@@ -436,7 +439,7 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .sell-form__textarea {
@@ -461,7 +464,7 @@
     border: 1px solid #5f5f5f;
     border-radius: 4px;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 700;
     color: #5f5f5f;
     background-color: #ffffff;
     appearance: none;
@@ -528,7 +531,7 @@
     background-color: #ff5555;
     color: #ffffff;
     font-size: 26px;
-    font-weight: bold;
+    font-weight: 700;
     border: none;
     border-radius: 5px;
     cursor: pointer;

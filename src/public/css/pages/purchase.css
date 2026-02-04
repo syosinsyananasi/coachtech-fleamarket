@@ -5,7 +5,7 @@
 /* Purchase Page */
 .purchase {
     display: flex;
-    gap: 60px;
+    gap: 100px;
     padding: 50px 70px;
 }
 
@@ -15,13 +15,12 @@
 
 .purchase__product {
     display: flex;
-    gap: 30px;
-    padding-bottom: 30px;
+    gap: 56px;
 }
 
 .purchase__product-image {
-    width: 250px;
-    height: 200px;
+    width: 178px;
+    height: 178px;
     background-color: #d9d9d9;
     display: flex;
     align-items: center;
@@ -38,28 +37,28 @@
 .purchase__product-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .purchase__product-name {
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 30px;
+    font-weight: 700;
     margin-bottom: 15px;
 }
 
 .purchase__product-price {
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 32px;
+    font-weight: normal;
 }
 
 .purchase__divider {
     height: 2px;
     background-color: #000000;
-    margin: 20px 0;
+    margin: 52px 0 30px;
 }
 
 .purchase__section {
-    padding: 20px 0;
+    padding-left: 35px;
 }
 
 .purchase__section-header {
@@ -70,13 +69,15 @@
 }
 
 .purchase__section-title {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 700;
+    padding-bottom: 40px;
 }
 
 .purchase__change-link {
     color: #0073cc;
-    font-size: 16px;
+    font-size: 20px;
+    padding-right: 30px;
 }
 
 .purchase__change-link:hover {
@@ -91,7 +92,7 @@
     border: 1px solid #5f5f5f;
     border-radius: 4px;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 700;
     color: #5f5f5f;
     background-color: #ffffff;
     appearance: none;
@@ -99,6 +100,7 @@
     background-repeat: no-repeat;
     background-position: right 15px center;
     cursor: pointer;
+    margin-left: 60px;
 }
 
 .purchase__select:focus {
@@ -107,7 +109,9 @@
 }
 
 .purchase__address {
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 600;
+    padding-left: 60px;
 }
 
 .purchase__error {
@@ -117,19 +121,18 @@
 }
 
 .purchase__sidebar {
-    flex: 0 0 400px;
+    flex: 0 0 440px;
 }
 
 .purchase__summary {
-    background-color: #f5f5f5;
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 66px;
 }
 
 .purchase__summary-row {
     display: flex;
     justify-content: space-between;
-    padding: 48px;
+    padding: 43px 48px;
     border: 1px solid #000;
     border-bottom: none;
 }
@@ -140,7 +143,7 @@
 
 .purchase__summary-label {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .purchase__summary-value {
@@ -149,11 +152,11 @@
 
 .purchase__button {
     width: 100%;
-    padding: 18px 0;
+    padding: 12px 0;
     background-color: #ff5555;
     color: #ffffff;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 26px;
+    font-weight: 700;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -172,7 +175,7 @@
 
 .address-form__title {
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 50px;
 }
 
@@ -183,7 +186,7 @@
 .address-form__label {
     display: block;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 8px;
 }
 
@@ -213,7 +216,7 @@
     background-color: #ff5555;
     color: #ffffff;
     font-size: 26px;
-    font-weight: bold;
+    font-weight: 700;
     border: none;
     border-radius: 5px;
     cursor: pointer;

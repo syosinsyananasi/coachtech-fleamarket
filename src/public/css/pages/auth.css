@@ -19,7 +19,7 @@
 
 .auth-form__title {
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 700;
     text-align: center;
     margin-bottom: 50px;
 }
@@ -31,7 +31,7 @@
 .auth-form__label {
     display: block;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 8px;
 }
 
@@ -61,7 +61,7 @@
     background-color: #ff5555;
     color: #ffffff;
     font-size: 26px;
-    font-weight: bold;
+    font-weight: 700;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -93,7 +93,7 @@
 
 .verify-email__message {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 40px;
 }
 
@@ -104,7 +104,7 @@
     border: 1px solid #000000;
     border-radius: 10px;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
 }
 

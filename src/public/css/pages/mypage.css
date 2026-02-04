@@ -39,7 +39,7 @@
 
 .mypage__username {
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 700;
     font-style: normal;
     color: #000;
 }
@@ -55,7 +55,7 @@
     background-color: transparent;
     color: #ff5555;
     font-size: 26px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .mypage__edit-button:hover {
@@ -72,7 +72,7 @@
 
 .mypage__tab {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     color: #5f5f5f;
     padding-bottom: 5px;
 }
@@ -95,7 +95,8 @@
 
 .profile-form__title {
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 700;
+    text-align: center;
     margin-bottom: 50px;
 }
 
@@ -130,7 +131,7 @@
     background-color: transparent;
     color: #ff5555;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
 }
 
@@ -150,7 +151,7 @@
 .profile-form__label {
     display: block;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 8px;
 }
 
@@ -180,7 +181,7 @@
     background-color: #ff5555;
     color: #ffffff;
     font-size: 26px;
-    font-weight: bold;
+    font-weight: 700;
     border: none;
     border-radius: 5px;
     cursor: pointer;
