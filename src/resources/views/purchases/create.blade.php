@@ -57,14 +57,14 @@
 
     <div class="purchase__sidebar">
         <div class="purchase__summary">
-            <div class="purchase__summary-row">
-                <span class="purchase__summary-label">商品代金</span>
-                <span class="purchase__summary-value">¥ {{ number_format($item->price) }}</span>
-            </div>
-            <div class="purchase__summary-row">
-                <span class="purchase__summary-label">支払い方法</span>
-                <span class="purchase__summary-value" id="selected-payment">{{ old('payment_method', session('payment_method')) ?: '未選択' }}</span>
-            </div>
+            <dl class="purchase__summary-row">
+                <dt class="purchase__summary-label">商品代金</dt>
+                <dd class="purchase__summary-value">¥ {{ number_format($item->price) }}</dd>
+            </dl>
+            <dl class="purchase__summary-row">
+                <dt class="purchase__summary-label">支払い方法</dt>
+                <dd class="purchase__summary-value" id="selected-payment">{{ old('payment_method', session('payment_method')) ?: '未選択' }}</dd>
+            </dl>
         </div>
 
         <form id="purchase-form" action="{{ route('purchase.store', $item) }}" method="POST">
