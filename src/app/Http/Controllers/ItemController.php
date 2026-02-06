@@ -16,7 +16,9 @@ class ItemController extends Controller
             if (!auth()->check()) {
                 $items = collect();
             } else {
-                $items = auth()->user()->favorites()
+                /** @var \App\Models\User $user */
+                $user = auth()->user();
+                $items = $user->favorites()
                     ->when($keyword, function ($query) use ($keyword) {
                         return $query->where('name', 'like', '%' . $keyword . '%');
                     })

@@ -88,7 +88,7 @@
                     <li class="item-detail__comment">
                         <div class="item-detail__comment-user">
                             <div class="item-detail__comment-avatar">
-                                @if($comment->user->profile && $comment->user->profile->profile_image)
+                                @if($comment->user->profile?->profile_image)
                                     <img src="{{ asset('storage/' . $comment->user->profile->profile_image) }}" alt="{{ $comment->user->name }}">
                                 @endif
                             </div>

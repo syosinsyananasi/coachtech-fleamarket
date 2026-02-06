@@ -7,7 +7,7 @@
     <div class="mypage__profile">
         <div class="mypage__user-info">
             <div class="mypage__avatar">
-                @if($user->profile && $user->profile->profile_image)
+                @if($user->profile?->profile_image)
                     <img src="{{ asset('storage/' . $user->profile->profile_image) }}" alt="{{ $user->name }}">
                 @endif
             </div>

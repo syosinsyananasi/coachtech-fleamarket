@@ -11,7 +11,7 @@ class MypageController extends Controller
     {
         $user = auth()->user();
         $page = request()->query('page', 'sell');
-
+        /** @var \App\Models\User $user */
         if ($page === 'buy') {
             $items = $user->purchases()->with('item')->get()->pluck('item');
         } else {
@@ -24,6 +24,7 @@ class MypageController extends Controller
     public function edit()
     {
         $user = auth()->user();
+        /** @var \App\Models\User $user */
         $profile = $user->profile;
         return view('mypage.edit', compact('user', 'profile'));
     }
@@ -31,7 +32,7 @@ class MypageController extends Controller
     public function update(ProfileRequest $request)
     {
         $user = auth()->user();
-
+        /** @var \App\Models\User $user */
         $user->update(['name' => $request->name]);
 
         $profileData = [
