@@ -6,7 +6,7 @@
 <div class="sell-container">
     <h1 class="sell-form__title">商品の出品</h1>
 
-    <form class="sell-form" action="{{ route('sell.store') }}" method="POST" enctype="multipart/form-data" novalidate>
+    <form class="sell-form" action="{{ route('sell.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="sell-form__section">

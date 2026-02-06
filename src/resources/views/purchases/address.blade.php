@@ -6,7 +6,7 @@
 <div class="address-container">
     <h1 class="address-form__title">住所の変更</h1>
 
-    <form class="address-form" action="{{ route('address.update', $item) }}" method="POST" novalidate>
+    <form class="address-form" action="{{ route('address.update', $item) }}" method="POST">
         @csrf
 
         <div class="address-form__group">

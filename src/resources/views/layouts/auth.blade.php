@@ -20,6 +20,7 @@
         @yield('content')
     </main>
 
+    <script src="{{ asset('js/novalidate.js') }}"></script>
     @yield('scripts')
 </body>
 </html>
