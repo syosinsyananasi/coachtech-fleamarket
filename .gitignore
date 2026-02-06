@@ -1,6 +1,6 @@
 /docs/*
 /docker/mysql/data/
-!docs/*.drawio
+!docs/er-diagram.png
 !docs/table-design
 
 /CLAUDE.md
