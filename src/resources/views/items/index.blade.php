@@ -4,8 +4,8 @@
 
 @section('content')
 <nav class="items-tabs" aria-label="商品フィルター">
-    <a href="{{ route('item.index') }}" class="items-tabs__tab {{ !request('tab') || request('tab') === 'recommend' ? 'items-tabs__tab--active' : '' }}">おすすめ</a>
-    <a href="{{ route('item.index', ['tab' => 'mylist']) }}" class="items-tabs__tab {{ request('tab') === 'mylist' ? 'items-tabs__tab--active' : '' }}">マイリスト</a>
+    <a href="{{ route('item.index', array_filter(['keyword' => request('keyword')])) }}" class="items-tabs__tab {{ !request('tab') || request('tab') === 'recommend' ? 'items-tabs__tab--active' : '' }}">おすすめ</a>
+    <a href="{{ route('item.index', array_filter(['tab' => 'mylist', 'keyword' => request('keyword')])) }}" class="items-tabs__tab {{ request('tab') === 'mylist' ? 'items-tabs__tab--active' : '' }}">マイリスト</a>
 </nav>
 
 <ul class="items-grid">
