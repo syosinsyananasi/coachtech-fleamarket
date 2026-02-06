@@ -1,6 +1,7 @@
 /docs/*
 /docker/mysql/data/
 !docs/*.drawio
+!docs/table-design
 
 /CLAUDE.md
 
