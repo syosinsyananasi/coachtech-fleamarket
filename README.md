@@ -2,7 +2,6 @@
 
 coachtech ブランドのフリーマーケットアプリケーションです。ユーザー間で商品の出品・購入・お気に入り登録・コメントが行えます。
 
-
 ## アプリケーション URL
 
 - 開発環境: <http://localhost>
@@ -43,7 +42,7 @@ coachtech ブランドのフリーマーケットアプリケーションです�
 
 ## ER 図
 
-![ER図](docs/er-diagram.drawio)
+[ER図](docs/er-diagram.drawio)
 
 ## 環境構築
 
