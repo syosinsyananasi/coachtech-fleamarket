@@ -15,7 +15,7 @@
                 <div class="sell-form__image-preview" id="image-preview">
                     <span class="sell-form__image-button">画像を選択する</span>
                 </div>
-                <input type="file" name="image" class="sell-form__image-input" accept="image/jpeg,image/png">
+                <input type="file" name="image" class="sell-form__image-input" accept="image/jpeg,image/png" data-image-preview="#image-preview">
             </label>
             @error('image')
                 <p class="sell-form__error">{{ $message }}</p>
@@ -101,16 +101,5 @@
 @endsection
 
 @section('scripts')
-<script>
-    document.querySelector('.sell-form__image-input').addEventListener('change', function(e) {
-        var preview = document.getElementById('image-preview');
-        if (e.target.files && e.target.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                preview.innerHTML = '<img src="' + e.target.result + '">';
-            }
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    });
-</script>
+<script src="{{ asset('js/image-preview.js') }}"></script>
 @endsection

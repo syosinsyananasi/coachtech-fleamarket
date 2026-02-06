@@ -17,7 +17,7 @@
             </div>
             <label class="profile-form__avatar-button">
                 画像を選択する
-                <input type="file" name="profile_image" class="profile-form__avatar-input" accept="image/*">
+                <input type="file" name="profile_image" class="profile-form__avatar-input" accept="image/*" data-image-preview=".profile-form__avatar-image" data-preview-alt="プロフィール画像">
             </label>
         </div>
 
@@ -59,16 +59,5 @@
 @endsection
 
 @section('scripts')
-<script>
-    document.querySelector('.profile-form__avatar-input').addEventListener('change', function(e) {
-        var preview = document.querySelector('.profile-form__avatar-image');
-        if (e.target.files && e.target.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                preview.innerHTML = '<img src="' + e.target.result + '" alt="プロフィール画像">';
-            }
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    });
-</script>
+<script src="{{ asset('js/image-preview.js') }}"></script>
 @endsection

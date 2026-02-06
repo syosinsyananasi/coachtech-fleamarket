@@ -79,19 +79,5 @@
 @endsection
 
 @section('scripts')
-<script>
-    document.getElementById('payment_method').addEventListener('change', function() {
-        const selectedPayment = document.getElementById('selected-payment');
-        selectedPayment.textContent = this.value || '未選択';
-    });
-
-    document.getElementById('purchase-form').addEventListener('submit', function() {
-        const paymentMethod = document.getElementById('payment_method').value;
-        if (paymentMethod === 'コンビニ支払い') {
-            this.target = '_blank';
-        } else {
-            this.target = '_self';
-        }
-    });
-</script>
+<script src="{{ asset('js/purchase.js') }}"></script>
 @endsection
