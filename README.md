@@ -42,7 +42,7 @@ coachtech ブランドのフリーマーケットアプリケーションです�
 
 ## ER 図
 
-[ER図](docs/er-diagram.drawio)
+![ER図](docs/er-diagram.png)
 
 ## 環境構築
 
