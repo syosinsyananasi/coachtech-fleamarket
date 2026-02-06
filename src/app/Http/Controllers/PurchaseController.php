@@ -27,15 +27,16 @@ class PurchaseController extends Controller
 
         $item->update(['status' => Item::STATUS_PENDING]);
 
-        session([
-            'purchase_data' => [
-                'item_id' => $item->id,
-                'payment_method' => $request->payment_method,
-                'postal_code' => $request->postal_code,
-                'address' => $request->address,
-                'building' => $request->building,
-            ]
+        Purchase::create([
+            'user_id' => auth()->id(),
+            'item_id' => $item->id,
+            'payment_method' => $request->payment_method,
+            'postal_code' => $request->postal_code,
+            'address' => $request->address,
+            'building' => $request->building,
         ]);
+
+        session(['purchase_item_id' => $item->id]);
 
         Stripe::setApiKey(config('services.stripe.secret'));
 
@@ -79,26 +80,16 @@ class PurchaseController extends Controller
 
     private function completePurchase()
     {
-        $purchaseData = session('purchase_data');
+        $itemId = session('purchase_item_id');
 
-        if (!$purchaseData) {
+        if (!$itemId) {
             return redirect('/');
         }
 
-        $item = Item::findOrFail($purchaseData['item_id']);
-
-        Purchase::create([
-            'user_id' => auth()->id(),
-            'item_id' => $purchaseData['item_id'],
-            'payment_method' => $purchaseData['payment_method'],
-            'postal_code' => $purchaseData['postal_code'],
-            'address' => $purchaseData['address'],
-            'building' => $purchaseData['building'],
-        ]);
-
+        $item = Item::findOrFail($itemId);
         $item->update(['status' => Item::STATUS_SOLD]);
 
-        session()->forget('purchase_data');
+        session()->forget('purchase_item_id');
 
         return redirect('/');
     }
