@@ -28,6 +28,7 @@ class MyListTest extends TestCase
         ], $overrides));
     }
 
+    // いいねした商品だけが表示される
     public function test_only_favorited_items_are_displayed()
     {
         $user = User::factory()->create();
@@ -51,6 +52,7 @@ class MyListTest extends TestCase
         $response->assertDontSee('未いいね商品');
     }
 
+    // 購入済み商品は「Sold」と表示される
     public function test_sold_favorited_items_show_sold_label()
     {
         $user = User::factory()->create();
@@ -71,6 +73,7 @@ class MyListTest extends TestCase
         $response->assertSee('Sold');
     }
 
+    // 未認証の場合は何も表示されない
     public function test_unauthenticated_user_sees_no_items()
     {
         $user = User::factory()->create();

@@ -13,6 +13,7 @@ class PaymentMethodTest extends TestCase
 {
     use RefreshDatabase;
 
+    // 小計画面で変更が即時反映される
     public function test_selected_payment_method_is_reflected_in_subtotal()
     {
         $user = User::factory()->create();

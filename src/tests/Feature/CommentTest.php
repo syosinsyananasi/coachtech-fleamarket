@@ -27,6 +27,7 @@ class CommentTest extends TestCase
         ]);
     }
 
+    // ログイン済みのユーザーはコメントを送信できる
     public function test_authenticated_user_can_post_comment()
     {
         $user = User::factory()->create();
@@ -50,6 +51,7 @@ class CommentTest extends TestCase
         ]);
     }
 
+    // ログイン前のユーザーはコメントを送信できない
     public function test_unauthenticated_user_cannot_post_comment()
     {
         $user = User::factory()->create();

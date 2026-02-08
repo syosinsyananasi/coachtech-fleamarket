@@ -31,6 +31,7 @@ class EmailVerificationTest extends TestCase
         Notification::assertSentTo($user, VerifyEmail::class);
     }
 
+    // メール認証誘導画面で「認証はこちらから」ボタンを押下するとメール認証サイトに遷移する
     public function test_verify_email_page_has_link_to_mail_service()
     {
         $user = User::factory()->unverified()->create();
@@ -49,6 +50,7 @@ class EmailVerificationTest extends TestCase
         $response->assertSee('http://localhost:8025');
     }
 
+    // メール認証を完了すると、プロフィール設定画面に遷移する
     public function test_user_is_redirected_after_email_verification()
     {
         $user = User::factory()->unverified()->create();

@@ -48,6 +48,7 @@ class FavoriteTest extends TestCase
         ]);
     }
 
+    // 追加済みのアイコンは色が変化する
     public function test_favorited_icon_changes_color()
     {
         $user = User::factory()->create();
@@ -68,6 +69,7 @@ class FavoriteTest extends TestCase
         $response->assertSee('heart-active.png');
     }
 
+    // 再度いいねアイコンを押下することによって、いいねを解除することができる
     public function test_user_can_unfavorite_an_item()
     {
         $user = User::factory()->create();

@@ -28,6 +28,7 @@ class ItemListTest extends TestCase
         ], $overrides));
     }
 
+    // 全商品を取得できる
     public function test_all_items_are_displayed()
     {
         $user = User::factory()->create();
@@ -41,6 +42,7 @@ class ItemListTest extends TestCase
         $response->assertSee('商品B');
     }
 
+    // 購入済み商品は「Sold」と表示される
     public function test_sold_items_show_sold_label()
     {
         $user = User::factory()->create();
@@ -52,6 +54,7 @@ class ItemListTest extends TestCase
         $response->assertSee('Sold');
     }
 
+    // 自分が出品した商品は表示されない
     public function test_own_items_are_not_displayed()
     {
         $user = User::factory()->create();

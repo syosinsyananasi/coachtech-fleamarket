@@ -43,6 +43,7 @@ class ItemSearchTest extends TestCase
         $response->assertDontSee('テストバッグ');
     }
 
+    // 検索状態がマイリストでも保持されている
     public function test_search_state_is_preserved_on_mylist()
     {
         $user = User::factory()->create();
