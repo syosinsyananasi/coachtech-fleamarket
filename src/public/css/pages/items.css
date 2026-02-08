@@ -113,10 +113,20 @@
     align-items: center;
 }
 
+.item-detail__favorite img {
+    width: 40px;
+    height: 40px;
+}
+
 .item-detail__comment-icon {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
+}
+
+.item-detail__comment-icon img {
+    width: 40px;
+    height: 40px;
 }
 
 .item-detail__count {

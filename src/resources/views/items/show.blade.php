@@ -27,17 +27,17 @@
                         @if($item->isFavoritedBy(auth()->user()))
                             @method('DELETE')
                             <button type="submit" class="item-detail__favorite item-detail__favorite--active">
-                                <img src="{{ asset('images/heart-active.png') }}" alt="お気に入り" width="40" height="40">
+                                <img src="{{ asset('images/heart-active.png') }}" alt="お気に入り">
                             </button>
                         @else
                             <button type="submit" class="item-detail__favorite">
-                                <img src="{{ asset('images/heart-default.png') }}" alt="お気に入り" width="40" height="40">
+                                <img src="{{ asset('images/heart-default.png') }}" alt="お気に入り">
                             </button>
                         @endif
                     </form>
                 @else
                     <span class="item-detail__favorite">
-                        <img src="{{ asset('images/heart-default.png') }}" alt="お気に入り" width="40" height="40">
+                        <img src="{{ asset('images/heart-default.png') }}" alt="お気に入り">
                     </span>
                 @endauth
                 <span class="item-detail__count">{{ $item->favorites->count() }}</span>
@@ -45,7 +45,7 @@
 
             <div class="item-detail__action-item">
                 <span class="item-detail__comment-icon">
-                    <img src="{{ asset('images/comment-icon.png') }}" alt="コメント" width="40" height="40">
+                    <img src="{{ asset('images/comment-icon.png') }}" alt="コメント">
                 </span>
                 <span class="item-detail__count">{{ $item->comments->count() }}</span>
             </div>
