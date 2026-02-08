@@ -44,7 +44,7 @@
 | description | VARCHAR(255) |  |  | ○ |  |
 | price | UNSIGNED INT |  |  | ○ |  |
 | image | VARCHAR(255) |  |  | ○ |  |
-| is_sold | BOOLEAN |  |  | ○ |  |
+| status | enum |  |  | ○ |  |
 | created_at | TIMESTAMP |  |  |  |  |
 | updated_at | TIMESTAMP |  |  |  |  |
 
