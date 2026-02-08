@@ -38,7 +38,7 @@ class ExhibitionTest extends TestCase
             'price' => 5000,
             'condition_id' => $condition->id,
             'categories' => [$category1->id, $category2->id],
-            'image' => UploadedFile::fake()->image('item.jpg'),
+            'image' => UploadedFile::fake()->create('item.jpg', 100, 'image/jpeg'),
         ]);
 
         $response->assertRedirect('/');
