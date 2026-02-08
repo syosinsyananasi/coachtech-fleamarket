@@ -44,7 +44,7 @@
 | description | VARCHAR(255) |  |  | ○ |  |
 | price | UNSIGNED INT |  |  | ○ |  |
 | image | VARCHAR(255) |  |  | ○ |  |
-| status | enum |  |  | ○ |  |
+| status | ENUM('available', 'pending', 'sold') |  |  | ○ |  |
 | created_at | TIMESTAMP |  |  |  |  |
 | updated_at | TIMESTAMP |  |  |  |  |
 
