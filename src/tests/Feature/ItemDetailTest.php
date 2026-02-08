@@ -43,6 +43,7 @@ class ItemDetailTest extends TestCase
         $response = $this->get(route('item.show', $item));
 
         $response->assertStatus(200);
+        $response->assertSee('storage/test.jpg');
         $response->assertSee('テスト商品');
         $response->assertSee('テストブランド');
         $response->assertSee('5,000');
@@ -51,6 +52,12 @@ class ItemDetailTest extends TestCase
         $response->assertSee('良好');
         $response->assertSee('コメントユーザー');
         $response->assertSee('テストコメント内容');
+        $response->assertSeeInOrder([
+            'heart-default.png',
+            '1',
+            'comment-icon.png',
+            '1',
+        ]);
     }
 
     public function test_multiple_categories_are_displayed()

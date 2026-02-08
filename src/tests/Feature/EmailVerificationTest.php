@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Notifications\VerifyEmail;
@@ -33,6 +34,11 @@ class EmailVerificationTest extends TestCase
     public function test_verify_email_page_has_link_to_mail_service()
     {
         $user = User::factory()->unverified()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
 
         $this->actingAs($user);
 
@@ -46,6 +52,11 @@ class EmailVerificationTest extends TestCase
     public function test_user_is_redirected_after_email_verification()
     {
         $user = User::factory()->unverified()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
 
         $this->actingAs($user);
 

@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Condition;
 use App\Models\Item;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -30,6 +31,11 @@ class MyListTest extends TestCase
     public function test_only_favorited_items_are_displayed()
     {
         $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $otherUser = User::factory()->create();
 
         $favItem = $this->createItem($otherUser, ['name' => 'いいね商品']);
@@ -48,6 +54,11 @@ class MyListTest extends TestCase
     public function test_sold_favorited_items_show_sold_label()
     {
         $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $otherUser = User::factory()->create();
 
         $soldItem = $this->createItem($otherUser, ['name' => '売り切れ商品', 'status' => 'sold']);

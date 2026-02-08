@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Condition;
 use App\Models\Item;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -45,6 +46,11 @@ class ItemSearchTest extends TestCase
     public function test_search_state_is_preserved_on_mylist()
     {
         $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $otherUser = User::factory()->create();
         $condition = Condition::create(['name' => '良好']);
 
@@ -61,8 +67,11 @@ class ItemSearchTest extends TestCase
 
         $this->actingAs($user);
 
-        $response = $this->get('/?tab=mylist&keyword=腕時計');
+        $response = $this->get('/?keyword=腕時計');
+        $response->assertStatus(200);
+        $response->assertSee('テスト腕時計');
 
+        $response = $this->get('/?tab=mylist&keyword=腕時計');
         $response->assertStatus(200);
         $response->assertSee('テスト腕時計');
         $response->assertSee('value="腕時計"', false);

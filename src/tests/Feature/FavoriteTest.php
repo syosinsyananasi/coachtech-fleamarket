@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Condition;
 use App\Models\Item;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -29,6 +30,11 @@ class FavoriteTest extends TestCase
     public function test_user_can_favorite_an_item()
     {
         $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $otherUser = User::factory()->create();
         $item = $this->createItem($otherUser);
 
@@ -45,6 +51,11 @@ class FavoriteTest extends TestCase
     public function test_favorited_icon_changes_color()
     {
         $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $otherUser = User::factory()->create();
         $item = $this->createItem($otherUser);
 
@@ -60,6 +71,11 @@ class FavoriteTest extends TestCase
     public function test_user_can_unfavorite_an_item()
     {
         $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $otherUser = User::factory()->create();
         $item = $this->createItem($otherUser);
 

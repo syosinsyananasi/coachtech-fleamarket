@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Condition;
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -53,13 +54,18 @@ class ItemListTest extends TestCase
 
     public function test_own_items_are_not_displayed()
     {
-        $loginUser = User::factory()->create();
+        $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $otherUser = User::factory()->create();
 
-        $this->createItem($loginUser, ['name' => '自分の商品']);
+        $this->createItem($user, ['name' => '自分の商品']);
         $this->createItem($otherUser, ['name' => '他人の商品']);
 
-        $this->actingAs($loginUser);
+        $this->actingAs($user);
         $response = $this->get('/');
 
         $response->assertStatus(200);

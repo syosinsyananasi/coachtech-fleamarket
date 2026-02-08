@@ -12,8 +12,8 @@ class LogoutTest extends TestCase
 
     public function test_user_can_logout()
     {
+        /** @var \App\Models\User  */
         $user = User::factory()->create();
-
         $this->actingAs($user);
 
         $response = $this->post('/logout');

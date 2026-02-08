@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Category;
 use App\Models\Condition;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -19,6 +20,11 @@ class ExhibitionTest extends TestCase
         Storage::fake('public');
 
         $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $condition = Condition::create(['name' => '良好']);
         $category1 = Category::create(['name' => 'ファッション']);
         $category2 = Category::create(['name' => '家電']);

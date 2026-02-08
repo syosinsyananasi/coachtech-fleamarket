@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Condition;
 use App\Models\Item;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -29,6 +30,11 @@ class CommentTest extends TestCase
     public function test_authenticated_user_can_post_comment()
     {
         $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $item = $this->createItem($user);
 
         $this->actingAs($user);
@@ -59,6 +65,11 @@ class CommentTest extends TestCase
     public function test_comment_content_is_required()
     {
         $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $item = $this->createItem($user);
 
         $this->actingAs($user);
@@ -72,6 +83,11 @@ class CommentTest extends TestCase
     public function test_comment_must_not_exceed_255_characters()
     {
         $user = User::factory()->create();
+        Profile::create([
+            'user_id' => $user->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
         $item = $this->createItem($user);
 
         $this->actingAs($user);
