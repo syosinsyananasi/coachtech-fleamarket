@@ -155,8 +155,8 @@ DB_DATABASE=demo_test
 DB_USERNAME=root
 DB_PASSWORD=root
 
-STRIPE_KEY=
-STRIPE_SECRET=
+STRIPE_KEY=（pk_test_で始まるキーを入力）
+STRIPE_SECRET=（sk_test_で始まるキーを入力）
 ```
 
 アプリケーションキーを生成します：
