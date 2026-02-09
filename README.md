@@ -34,6 +34,7 @@ coachtech ブランドのフリーマーケットアプリケーションです�
 | Docker / Docker Compose | - |
 | Laravel Fortify | 1.x |
 | Stripe PHP SDK | 19.x |
+| phpMyAdmin | - |
 | MailHog | - |
 
 ## テーブル設計
@@ -75,17 +76,21 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 
-MAIL_MAILER=smtp
-MAIL_HOST=mailhog
-MAIL_PORT=1025
 ```
 
-Stripe 決済を使用する場合は、以下も追加してください：
+Stripe 決済を使用するため、以下の手順で API キーを取得・設定してください：
+
+1. [Stripe](https://stripe.com/jp) にアクセスし、アカウントを作成（またはログイン）します
+2. Stripe ダッシュボードの「開発者」→「API キー」ページを開きます
+3. 「公開可能キー」（`pk_test_`で始まる）と「シークレットキー」（`sk_test_`で始まる）をコピーします
+4. `src/.env` に以下を追加します：
 
 ```ini
-STRIPE_KEY=your_stripe_public_key
-STRIPE_SECRET=your_stripe_secret_key
+STRIPE_KEY=xxxxxxxxxxxxxxxxxxxxxxxx
+STRIPE_SECRET=xxxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+※ 本番環境では `pk_live_` / `sk_live_` で始まる本番キーを使用してください
 
 ### 4. PHP パッケージのインストール
 
@@ -121,13 +126,60 @@ docker-compose exec php php artisan storage:link
 
 ## テスト
 
+### テスト用データベースの作成
+
+テスト実行前に、MySQL コンテナ内でテスト用データベースを作成してください：
+
+```bash
+docker-compose exec mysql bash -c 'mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS demo_test;"'
+```
+
+### .env.testing の作成
+
+`src/.env.testing` がテスト時に使用されます。以下の手順で作成してください：
+
+```bash
+cp src/.env.example src/.env.testing
+```
+
+`src/.env.testing` を以下のように編集します：
+
+```ini
+APP_ENV=test
+APP_KEY=
+
+DB_CONNECTION=mysql_test
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=demo_test
+DB_USERNAME=root
+DB_PASSWORD=root
+
+STRIPE_KEY=
+STRIPE_SECRET=
+```
+
+アプリケーションキーを生成します：
+
+```bash
+docker-compose exec php php artisan key:generate --env=testing
+```
+
+テスト用のマイグレーションを実行します：
+
+```bash
+docker-compose exec php php artisan migrate --env=testing
+```
+
+### テストの実行
+
 ```bash
 docker-compose exec php php artisan test
 ```
 
 ## アカウント
 
-シーディングで以下のテスト用アカウントが作成されます。
+シーディングで以下のテスト用アカウントと商品10件が作成されます。
 
 | 名前 | メールアドレス | パスワード |
 | --- | --- | --- |
