@@ -10,18 +10,21 @@ use Stripe\Checkout\Session;
 
 class PurchaseController extends Controller
 {
-    public function create(Item $item)
+    public function create($item_id)
     {
+        $item = Item::findOrFail($item_id);
         $user = auth()->user();
         $profile = $user->profile;
 
         return view('purchases.create', compact('item', 'profile'));
     }
 
-    public function store(PurchaseRequest $request, Item $item)
+    public function store(PurchaseRequest $request, $item_id)
     {
+        $item = Item::findOrFail($item_id);
+
         if ($item->status !== Item::STATUS_AVAILABLE) {
-            return redirect()->route('item.show', $item)
+            return redirect()->route('item.show', $item->id)
                 ->with('error', 'この商品は現在購入できません。');
         }
 
@@ -56,7 +59,7 @@ class PurchaseController extends Controller
             ]],
             'mode' => 'payment',
             'success_url' => route('purchase.paymentSuccess'),
-            'cancel_url' => route('purchase.create', $item),
+            'cancel_url' => route('purchase.create', $item->id),
         ];
 
         // コンビニ支払いの有効期限（3日間）

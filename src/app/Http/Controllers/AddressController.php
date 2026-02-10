@@ -7,13 +7,15 @@ use App\Models\Item;
 
 class AddressController extends Controller
 {
-    public function edit(Item $item)
+    public function edit($item_id)
     {
+        $item = Item::findOrFail($item_id);
         return view('purchases.address', compact('item'));
     }
 
-    public function update(AddressRequest $request, Item $item)
+    public function update(AddressRequest $request, $item_id)
     {
+        $item = Item::findOrFail($item_id);
         $profile = auth()->user()->profile;
 
         if ($profile) {
@@ -24,6 +26,6 @@ class AddressController extends Controller
             ]);
         }
 
-        return redirect()->route('purchase.create', $item);
+        return redirect()->route('purchase.create', $item->id);
     }
 }

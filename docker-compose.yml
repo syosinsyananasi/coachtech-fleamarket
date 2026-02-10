@@ -1,5 +1,3 @@
-# version: '3.8' 自動認識されるため不要
-
 services:
   nginx:
     image: nginx:1.21.1
