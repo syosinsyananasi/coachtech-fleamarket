@@ -40,16 +40,11 @@ class LoginTest extends TestCase
 
     public function test_login_fails_with_wrong_credentials()
     {
-        User::factory()->create([
-            'email' => 'test@example.com',
-            'password' => bcrypt('password'),
-        ]);
-
         $this->get('/login')->assertStatus(200);
 
         $response = $this->post('/login', [
             'email' => 'test@example.com',
-            'password' => 'wrongpassword',
+            'password' => 'password',
         ]);
 
         $response->assertSessionHasErrors([

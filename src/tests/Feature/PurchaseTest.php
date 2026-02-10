@@ -36,6 +36,11 @@ class PurchaseTest extends TestCase
             'status' => 'available',
         ]);
 
+        $this->actingAs($buyer);
+
+        $this->get(route('purchase.create', $item->id))
+            ->assertStatus(200);
+
         Purchase::create([
             'user_id' => $buyer->id,
             'item_id' => $item->id,
@@ -44,8 +49,6 @@ class PurchaseTest extends TestCase
             'address' => '東京都渋谷区',
         ]);
         $item->update(['status' => 'pending']);
-
-        $this->actingAs($buyer);
 
         $response = $this->withSession(['purchase_item_id' => $item->id])
             ->get(route('purchase.paymentSuccess'));
@@ -123,9 +126,16 @@ class PurchaseTest extends TestCase
             'description' => 'テスト説明',
             'price' => 1000,
             'image' => 'test.jpg',
-            'status' => 'sold',
+            'status' => 'available',
         ]);
 
+        $this->actingAs($buyer);
+
+        // 商品購入画面を開く
+        $this->get(route('purchase.create', $item->id))
+            ->assertStatus(200);
+
+        // 購入処理
         Purchase::create([
             'user_id' => $buyer->id,
             'item_id' => $item->id,
@@ -133,8 +143,12 @@ class PurchaseTest extends TestCase
             'postal_code' => '123-4567',
             'address' => '東京都渋谷区',
         ]);
+        $item->update(['status' => 'pending']);
 
-        $this->actingAs($buyer);
+        $this->withSession(['purchase_item_id' => $item->id])
+            ->get(route('purchase.paymentSuccess'));
+
+        // マイページで購入した商品が表示される
         $response = $this->get(route('mypage.index', ['page' => 'buy']));
 
         $response->assertStatus(200);

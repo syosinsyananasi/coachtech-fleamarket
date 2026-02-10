@@ -71,6 +71,7 @@ class ItemSearchTest extends TestCase
         $response = $this->get('/?keyword=腕時計');
         $response->assertStatus(200);
         $response->assertSee('テスト腕時計');
+        $response->assertSee('value="腕時計"', false);
 
         $response = $this->get('/?tab=mylist&keyword=腕時計');
         $response->assertStatus(200);

@@ -43,7 +43,7 @@ class ItemDetailTest extends TestCase
         $response = $this->get(route('item.show', $item));
 
         $response->assertStatus(200);
-        $response->assertSee('storage/test.jpg');
+        $response->assertSee('/storage/test.jpg');
         $response->assertSee('テスト商品');
         $response->assertSee('テストブランド');
         $response->assertSee('5,000');

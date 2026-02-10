@@ -66,9 +66,10 @@ class FavoriteTest extends TestCase
         $otherUser = User::factory()->create();
         $item = $this->createItem($otherUser);
 
-        $user->favorites()->attach($item->id);
-
         $this->actingAs($user);
+        $this->get(route('item.show', $item))->assertStatus(200);
+        $this->post(route('favorite.store', $item));
+
         $response = $this->get(route('item.show', $item));
 
         $response->assertStatus(200);
@@ -87,9 +88,9 @@ class FavoriteTest extends TestCase
         $otherUser = User::factory()->create();
         $item = $this->createItem($otherUser);
 
-        $user->favorites()->attach($item->id);
-
         $this->actingAs($user);
+        $this->get(route('item.show', $item))->assertStatus(200);
+        $this->post(route('favorite.store', $item));
 
         $response = $this->get(route('item.show', $item));
         $response->assertSee('heart-active.png');
