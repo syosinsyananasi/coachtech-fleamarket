@@ -5,17 +5,30 @@ namespace Tests\Feature;
 use App\Models\Condition;
 use App\Models\Item;
 use App\Models\Profile;
-use App\Models\Purchase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mockery;
 use Tests\TestCase;
 
 class PurchaseTest extends TestCase
 {
     use RefreshDatabase;
 
+    private function mockStripeSession()
+    {
+        $mock = Mockery::mock('alias:' . \Stripe\Checkout\Session::class);
+        $mock->shouldReceive('create')
+            ->andReturn((object) ['url' => route('purchase.paymentSuccess')]);
+    }
+
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function test_purchase_completes_successfully()
     {
+        $this->mockStripeSession();
+
         $buyer = User::factory()->create();
         $seller = User::factory()->create();
         $condition = Condition::create(['name' => '良好']);
@@ -38,20 +51,22 @@ class PurchaseTest extends TestCase
 
         $this->actingAs($buyer);
 
+        // 商品購入画面を開く
         $this->get(route('purchase.create', $item->id))
             ->assertStatus(200);
 
-        Purchase::create([
-            'user_id' => $buyer->id,
-            'item_id' => $item->id,
+        // 購入ボタンを押す
+        $response = $this->post(route('purchase.store', $item->id), [
             'payment_method' => 'カード支払い',
             'postal_code' => '123-4567',
             'address' => '東京都渋谷区',
         ]);
-        $item->update(['status' => 'pending']);
 
-        $response = $this->withSession(['purchase_item_id' => $item->id])
-            ->get(route('purchase.paymentSuccess'));
+        // Stripe決済ページにリダイレクト
+        $response->assertRedirect(route('purchase.paymentSuccess'));
+
+        // 決済成功後
+        $response = $this->get(route('purchase.paymentSuccess'));
 
         $this->assertDatabaseHas('items', [
             'id' => $item->id,
@@ -61,8 +76,14 @@ class PurchaseTest extends TestCase
         $response->assertRedirect('/');
     }
 
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function test_sold_item_shows_sold_on_index()
     {
+        $this->mockStripeSession();
+
         $buyer = User::factory()->create();
         $seller = User::factory()->create();
         $condition = Condition::create(['name' => '良好']);
@@ -89,26 +110,31 @@ class PurchaseTest extends TestCase
         $this->get(route('purchase.create', $item->id))
             ->assertStatus(200);
 
-        Purchase::create([
-            'user_id' => $buyer->id,
-            'item_id' => $item->id,
+        // 購入ボタンを押す
+        $this->post(route('purchase.store', $item->id), [
             'payment_method' => 'カード支払い',
             'postal_code' => '123-4567',
             'address' => '東京都渋谷区',
         ]);
-        $item->update(['status' => 'pending']);
 
-        $this->withSession(['purchase_item_id' => $item->id])
-            ->get(route('purchase.paymentSuccess'));
+        // 決済成功後
+        $this->get(route('purchase.paymentSuccess'));
 
+        // 商品一覧でSold表示を確認
         $response = $this->get('/');
 
         $response->assertStatus(200);
         $response->assertSee('<span class="product-card__sold">Sold</span>', false);
     }
 
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function test_purchased_item_appears_in_profile()
     {
+        $this->mockStripeSession();
+
         $buyer = User::factory()->create();
         $seller = User::factory()->create();
         $condition = Condition::create(['name' => '良好']);
@@ -135,18 +161,15 @@ class PurchaseTest extends TestCase
         $this->get(route('purchase.create', $item->id))
             ->assertStatus(200);
 
-        // 購入処理
-        Purchase::create([
-            'user_id' => $buyer->id,
-            'item_id' => $item->id,
+        // 購入ボタンを押す
+        $this->post(route('purchase.store', $item->id), [
             'payment_method' => 'カード支払い',
             'postal_code' => '123-4567',
             'address' => '東京都渋谷区',
         ]);
-        $item->update(['status' => 'pending']);
 
-        $this->withSession(['purchase_item_id' => $item->id])
-            ->get(route('purchase.paymentSuccess'));
+        // 決済成功後
+        $this->get(route('purchase.paymentSuccess'));
 
         // マイページで購入した商品が表示される
         $response = $this->get(route('mypage.index', ['page' => 'buy']));
