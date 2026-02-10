@@ -8,6 +8,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
@@ -43,11 +44,11 @@ class EmailVerificationTest extends TestCase
 
         $this->actingAs($user);
 
-        $response = $this->get('/email/verify');
+        $response = $this->get('/email/verify')->assertStatus(200);
 
-        $response->assertStatus(200);
-        $response->assertSee('認証はこちらから');
-        $response->assertSee('http://localhost:8025');
+        // 「認証はこちらから」ボタンを押下→メール認証サイトを表示する
+        $mailResponse = Http::get('http://mailhog:8025');
+        $this->assertEquals(200, $mailResponse->status());
     }
 
     // メール認証を完了すると、プロフィール設定画面に遷移する
@@ -71,6 +72,6 @@ class EmailVerificationTest extends TestCase
         $response = $this->get($verificationUrl);
 
         $this->assertTrue($user->fresh()->hasVerifiedEmail());
-        $response->assertRedirect();
+        $response->assertRedirect(route('mypage.edit'));
     }
 }
