@@ -70,7 +70,7 @@ class MyListTest extends TestCase
         $response = $this->get('/?tab=mylist');
 
         $response->assertStatus(200);
-        $response->assertSee('Sold');
+        $response->assertSee('<span class="product-card__sold">Sold</span>', false);
     }
 
     // 未認証の場合は何も表示されない

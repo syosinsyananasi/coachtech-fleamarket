@@ -54,10 +54,10 @@ class ItemDetailTest extends TestCase
         $response->assertSee('テストコメント内容');
         $response->assertSeeInOrder([
             'heart-default.png',
-            '1',
+            '<span class="item-detail__count">1</span>',
             'comment-icon.png',
-            '1',
-        ]);
+            '<span class="item-detail__count">1</span>',
+        ], false);
     }
 
     public function test_multiple_categories_are_displayed()

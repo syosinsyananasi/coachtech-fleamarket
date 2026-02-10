@@ -11,6 +11,8 @@ class RegisterTest extends TestCase
 
     public function test_name_is_required()
     {
+        $this->get('/register')->assertStatus(200);
+
         $response = $this->post('/register', [
             'name' => '',
             'email' => 'test@example.com',
@@ -18,11 +20,15 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
-        $response->assertSessionHasErrors('name');
+        $response->assertSessionHasErrors([
+            'name' => 'お名前を入力してください',
+        ]);
     }
 
     public function test_email_is_required()
     {
+        $this->get('/register')->assertStatus(200);
+
         $response = $this->post('/register', [
             'name' => 'テストユーザー',
             'email' => '',
@@ -30,11 +36,15 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
-        $response->assertSessionHasErrors('email');
+        $response->assertSessionHasErrors([
+            'email' => 'メールアドレスを入力してください',
+        ]);
     }
 
     public function test_password_is_required()
     {
+        $this->get('/register')->assertStatus(200);
+
         $response = $this->post('/register', [
             'name' => 'テストユーザー',
             'email' => 'test@example.com',
@@ -42,11 +52,15 @@ class RegisterTest extends TestCase
             'password_confirmation' => '',
         ]);
 
-        $response->assertSessionHasErrors('password');
+        $response->assertSessionHasErrors([
+            'password' => 'パスワードを入力してください',
+        ]);
     }
 
     public function test_password_must_be_at_least_8_characters()
     {
+        $this->get('/register')->assertStatus(200);
+
         $response = $this->post('/register', [
             'name' => 'テストユーザー',
             'email' => 'test@example.com',
@@ -54,11 +68,15 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'pass123',
         ]);
 
-        $response->assertSessionHasErrors('password');
+        $response->assertSessionHasErrors([
+            'password' => 'パスワードは8文字以上で入力してください',
+        ]);
     }
 
     public function test_password_must_match_confirmation()
     {
+        $this->get('/register')->assertStatus(200);
+
         $response = $this->post('/register', [
             'name' => 'テストユーザー',
             'email' => 'test@example.com',
@@ -66,11 +84,15 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'different',
         ]);
 
-        $response->assertSessionHasErrors('password');
+        $response->assertSessionHasErrors([
+            'password' => 'パスワードと一致しません',
+        ]);
     }
 
     public function test_user_can_register_with_valid_data()
     {
+        $this->get('/register')->assertStatus(200);
+
         $response = $this->post('/register', [
             'name' => 'テストユーザー',
             'email' => 'test@example.com',
@@ -84,6 +106,6 @@ class RegisterTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect();
+        $response->assertRedirect(route('mypage.edit'));
     }
 }

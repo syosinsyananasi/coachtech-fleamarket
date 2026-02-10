@@ -39,16 +39,28 @@ class CommentTest extends TestCase
         $item = $this->createItem($user);
 
         $this->actingAs($user);
-        $response = $this->post(route('comment.store', $item), [
+
+        $response = $this->get(route('item.show', $item));
+        $response->assertSeeInOrder([
+            'comment-icon.png',
+            '<span class="item-detail__count">0</span>',
+        ], false);
+
+        $this->post(route('comment.store', $item), [
             'content' => 'テストコメント',
         ]);
 
-        $response->assertRedirect();
         $this->assertDatabaseHas('comments', [
             'user_id' => $user->id,
             'item_id' => $item->id,
             'content' => 'テストコメント',
         ]);
+
+        $response = $this->get(route('item.show', $item));
+        $response->assertSeeInOrder([
+            'comment-icon.png',
+            '<span class="item-detail__count">1</span>',
+        ], false);
     }
 
     // ログイン前のユーザーはコメントを送信できない
@@ -62,6 +74,10 @@ class CommentTest extends TestCase
         ]);
 
         $response->assertRedirect(route('login'));
+        $this->assertDatabaseMissing('comments', [
+            'item_id' => $item->id,
+            'content' => 'テストコメント',
+        ]);
     }
 
     public function test_comment_content_is_required()
@@ -79,7 +95,9 @@ class CommentTest extends TestCase
             'content' => '',
         ]);
 
-        $response->assertSessionHasErrors('content');
+        $response->assertSessionHasErrors([
+            'content' => 'コメントを入力してください',
+        ]);
     }
 
     public function test_comment_must_not_exceed_255_characters()
@@ -97,6 +115,8 @@ class CommentTest extends TestCase
             'content' => str_repeat('a', 256),
         ]);
 
-        $response->assertSessionHasErrors('content');
+        $response->assertSessionHasErrors([
+            'content' => 'コメントは255文字以内で入力してください',
+        ]);
     }
 }

@@ -60,23 +60,48 @@ class PurchaseTest extends TestCase
 
     public function test_sold_item_shows_sold_on_index()
     {
+        $buyer = User::factory()->create();
         $seller = User::factory()->create();
         $condition = Condition::create(['name' => '良好']);
 
-        Item::create([
+        Profile::create([
+            'user_id' => $buyer->id,
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
+
+        $item = Item::create([
             'user_id' => $seller->id,
             'condition_id' => $condition->id,
             'name' => '購入済み商品',
             'description' => 'テスト説明',
             'price' => 1000,
             'image' => 'test.jpg',
-            'status' => 'sold',
+            'status' => 'available',
         ]);
+
+        $this->actingAs($buyer);
+
+        // 商品購入画面を開く
+        $this->get(route('purchase.create', $item->id))
+            ->assertStatus(200);
+
+        Purchase::create([
+            'user_id' => $buyer->id,
+            'item_id' => $item->id,
+            'payment_method' => 'カード支払い',
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区',
+        ]);
+        $item->update(['status' => 'pending']);
+
+        $this->withSession(['purchase_item_id' => $item->id])
+            ->get(route('purchase.paymentSuccess'));
 
         $response = $this->get('/');
 
         $response->assertStatus(200);
-        $response->assertSee('Sold');
+        $response->assertSee('<span class="product-card__sold">Sold</span>', false);
     }
 
     public function test_purchased_item_appears_in_profile()

@@ -39,13 +39,19 @@ class FavoriteTest extends TestCase
         $item = $this->createItem($otherUser);
 
         $this->actingAs($user);
-        $response = $this->post(route('favorite.store', $item));
 
-        $response->assertRedirect();
+        $response = $this->get(route('item.show', $item));
+        $response->assertSee('<span class="item-detail__count">0</span>', false);
+
+        $this->post(route('favorite.store', $item));
+
         $this->assertDatabaseHas('favorites', [
             'user_id' => $user->id,
             'item_id' => $item->id,
         ]);
+
+        $response = $this->get(route('item.show', $item));
+        $response->assertSee('<span class="item-detail__count">1</span>', false);
     }
 
     // 追加済みのアイコンは色が変化する
@@ -84,12 +90,20 @@ class FavoriteTest extends TestCase
         $user->favorites()->attach($item->id);
 
         $this->actingAs($user);
-        $response = $this->delete(route('favorite.destroy', $item));
 
-        $response->assertRedirect();
+        $response = $this->get(route('item.show', $item));
+        $response->assertSee('heart-active.png');
+        $response->assertSee('<span class="item-detail__count">1</span>', false);
+
+        $this->delete(route('favorite.destroy', $item));
+
         $this->assertDatabaseMissing('favorites', [
             'user_id' => $user->id,
             'item_id' => $item->id,
         ]);
+
+        $response = $this->get(route('item.show', $item));
+        $response->assertSee('heart-default.png');
+        $response->assertSee('<span class="item-detail__count">0</span>', false);
     }
 }

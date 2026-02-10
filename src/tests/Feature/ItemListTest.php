@@ -51,7 +51,7 @@ class ItemListTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
-        $response->assertSee('Sold');
+        $response->assertSee('<span class="product-card__sold">Sold</span>', false);
     }
 
     // 自分が出品した商品は表示されない
