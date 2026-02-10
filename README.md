@@ -104,19 +104,25 @@ docker-compose exec php composer install
 docker-compose exec php php artisan key:generate
 ```
 
-### 6. マイグレーションの実行
+### 6. キャッシュのクリア
+
+```bash
+docker-compose exec php php artisan config:clear
+```
+
+### 7. マイグレーションの実行
 
 ```bash
 docker-compose exec php php artisan migrate
 ```
 
-### 7. シーディングの実行
+### 8. シーディングの実行
 
 ```bash
 docker-compose exec php php artisan db:seed
 ```
 
-### 8. シンボリックリンクの作成（画像アップロード用）
+### 9. シンボリックリンクの作成（画像アップロード用）
 
 ```bash
 docker-compose exec php php artisan storage:link
