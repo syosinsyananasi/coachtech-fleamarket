@@ -37,10 +37,12 @@ class PaymentMethodTest extends TestCase
 
         $this->actingAs($user);
 
+        $this->get(route('purchase.create', $item))->assertStatus(200);
+
         $response = $this->withSession(['payment_method' => 'コンビニ支払い'])
             ->get(route('purchase.create', $item));
 
         $response->assertStatus(200);
-        $response->assertSee('コンビニ支払い');
+        $response->assertSee('<dd class="purchase__summary-value" id="selected-payment">コンビニ支払い</dd>', false);
     }
 }

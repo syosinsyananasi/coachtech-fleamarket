@@ -5,14 +5,21 @@ namespace Tests\Feature;
 use App\Models\Condition;
 use App\Models\Item;
 use App\Models\Profile;
-use App\Models\Purchase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mockery;
 use Tests\TestCase;
 
 class ShippingAddressTest extends TestCase
 {
     use RefreshDatabase;
+
+    private function mockStripeSession()
+    {
+        $mock = Mockery::mock('alias:' . \Stripe\Checkout\Session::class);
+        $mock->shouldReceive('create')
+            ->andReturn((object) ['url' => route('purchase.paymentSuccess')]);
+    }
 
     public function test_changed_address_is_reflected_on_purchase_page()
     {
@@ -37,6 +44,8 @@ class ShippingAddressTest extends TestCase
 
         $this->actingAs($user);
 
+        $this->get(route('address.edit', $item))->assertStatus(200);
+
         $this->post(route('address.update', $item), [
             'postal_code' => '999-8888',
             'address' => '新しい住所',
@@ -51,8 +60,14 @@ class ShippingAddressTest extends TestCase
         $response->assertSee('新しいビル101');
     }
 
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function test_purchase_has_correct_shipping_address()
     {
+        $this->mockStripeSession();
+
         $user = User::factory()->create();
         $seller = User::factory()->create();
         $condition = Condition::create(['name' => '良好']);
@@ -74,21 +89,25 @@ class ShippingAddressTest extends TestCase
 
         $this->actingAs($user);
 
+        // 住所変更画面を開く
+        $this->get(route('address.edit', $item))->assertStatus(200);
+
+        // 住所を変更する
         $this->post(route('address.update', $item), [
             'postal_code' => '999-8888',
             'address' => '新しい住所',
             'building' => '新しいビル101',
         ]);
 
-        $profile = $user->profile->fresh();
+        // 商品購入画面を開く
+        $this->get(route('purchase.create', $item->id))->assertStatus(200);
 
-        Purchase::create([
-            'user_id' => $user->id,
-            'item_id' => $item->id,
+        // 商品を購入する
+        $this->post(route('purchase.store', $item->id), [
             'payment_method' => 'カード支払い',
-            'postal_code' => $profile->postal_code,
-            'address' => $profile->address,
-            'building' => $profile->building,
+            'postal_code' => '999-8888',
+            'address' => '新しい住所',
+            'building' => '新しいビル101',
         ]);
 
         $this->assertDatabaseHas('purchases', [

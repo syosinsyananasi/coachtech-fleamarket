@@ -31,6 +31,8 @@ class ExhibitionTest extends TestCase
 
         $this->actingAs($user);
 
+        $this->get(route('sell.create'))->assertStatus(200);
+
         $response = $this->post(route('sell.store'), [
             'name' => 'テスト商品',
             'brand' => 'テストブランド',
