@@ -12,18 +12,16 @@ class ItemController extends Controller
         $tab = $request->query('tab');
         $keyword = $request->query('keyword');
 
-        if ($tab === 'mylist') {
-            if (!auth()->check()) {
-                $items = collect();
-            } else {
-                /** @var \App\Models\User $user */
-                $user = auth()->user();
-                $items = $user->favorites()
-                    ->when($keyword, function ($query) use ($keyword) {
-                        return $query->where('name', 'like', '%' . $keyword . '%');
-                    })
-                    ->get();
-            }
+        if ($tab === 'mylist' && !auth()->check()) {
+            $items = collect();
+        } elseif ($tab === 'mylist') {
+            /** @var \App\Models\User $user */
+            $user = auth()->user();
+            $items = $user->favorites()
+                ->when($keyword, function ($query) use ($keyword) {
+                    return $query->where('name', 'like', '%' . $keyword . '%');
+                })
+                ->get();
         } else {
             $items = Item::when(auth()->check(), function ($query) {
                     return $query->where('user_id', '!=', auth()->id());

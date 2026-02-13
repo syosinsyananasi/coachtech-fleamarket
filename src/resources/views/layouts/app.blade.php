@@ -27,9 +27,9 @@
 
         <nav class="main-header__nav">
             @auth
-                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                <form action="{{ route('logout') }}" method="POST" class="main-header__nav-form">
                     @csrf
-                    <button type="submit" class="main-header__nav-link" style="background: none; border: none; cursor: pointer;">ログアウト</button>
+                    <button type="submit" class="main-header__nav-link main-header__nav-link--button">ログアウト</button>
                 </form>
                 <a href="{{ route('mypage.index') }}" class="main-header__nav-link">マイページ</a>
             @else

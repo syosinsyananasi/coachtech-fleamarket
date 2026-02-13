@@ -113,9 +113,9 @@ class ItemSeeder extends Seeder
         Storage::disk('public')->makeDirectory('items');
 
         foreach (self::ITEMS as $itemData) {
-            $imageContents = file_get_contents($itemData['image']);
+            $imageContent = file_get_contents($itemData['image']);
             $imageName = 'items/' . uniqid() . '.jpg';
-            Storage::disk('public')->put($imageName, $imageContents);
+            Storage::disk('public')->put($imageName, $imageContent);
 
             $item = Item::create([
                 'user_id' => $user->id,

@@ -26,7 +26,7 @@
                         @csrf
                         @if($item->isFavoritedBy(auth()->user()))
                             @method('DELETE')
-                            <button type="submit" class="item-detail__favorite item-detail__favorite--active">
+                            <button type="submit" class="item-detail__favorite">
                                 <img src="{{ asset('images/heart-active.png') }}" alt="お気に入り">
                             </button>
                         @else
@@ -100,7 +100,7 @@
             </ul>
 
             @auth
-                <div class="item-detail__comment-form">
+                <div>
                     <h3 class="item-detail__comment-form-title">商品へのコメント</h3>
                     <form action="{{ route('comment.store', $item) }}" method="POST">
                         @csrf
