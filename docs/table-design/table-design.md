@@ -105,8 +105,8 @@
 | カラム名 | 型 | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
 | --- | --- | --- | --- | --- | --- |
 | id | UNSIGNED BIGINT | ○ |  | ○ |  |
-| user_id | UNSIGNED BIGINT |  | ○（composite） | ○ | users(id) |
-| item_id | UNSIGNED BIGINT |  | ○（composite） | ○ | items(id) |
+| user_id | UNSIGNED BIGINT |  | ○(composite) | ○ | users(id) |
+| item_id | UNSIGNED BIGINT |  | ○(composite) | ○ | items(id) |
 | created_at | TIMESTAMP |  |  |  |  |
 | updated_at | TIMESTAMP |  |  |  |  |
 
