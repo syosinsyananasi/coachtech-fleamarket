@@ -76,6 +76,8 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 
+MAIL_FROM_ADDRESS=no-reply@example.com
+MAIL_FROM_NAME="${APP_NAME}"
 ```
 
 Stripe 決済を使用するため、以下の手順で API キーを取得・設定してください：
@@ -161,8 +163,8 @@ DB_DATABASE=demo_test
 DB_USERNAME=root
 DB_PASSWORD=root
 
-STRIPE_KEY=（pk_test_で始まるキーを入力）
-STRIPE_SECRET=（sk_test_で始まるキーを入力）
+MAIL_FROM_ADDRESS=no-reply@example.com
+MAIL_FROM_NAME="${APP_NAME}"
 ```
 
 アプリケーションキーを生成します：
